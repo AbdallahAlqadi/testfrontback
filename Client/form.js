@@ -1,38 +1,59 @@
 document.getElementById('uploadBtn').addEventListener('click', async () => {
     const fileInput = document.getElementById('fileInput');
-    const file = fileInput.files[0];
-    const fileName = prompt('Please enter a name for the file:'); // طلب اسم الملف من المستخدم
-    if (!file) return alert('Please select a file.');
-    if (!fileName) return alert('Please enter a name for the file.');
+    const files = fileInput.files;
+
+    if (files.length === 0) {
+        return alert('Please select a file.');
+    }
+
+    const fileName = prompt('Please enter a name for the file:');
+    if (!fileName) {
+        return alert('Please enter a name for the file.');
+    }
 
     const formData = new FormData();
-    formData.append('file', file);
-    formData.append('fileName', fileName); // إضافة اسم الملف إلى البيانات المرسلة
+    
+    // Loop through the selected files and append them to formData
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+
+        // Example of file type validation (optional)
+        const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf']; // Add other types as needed
+        if (!allowedTypes.includes(file.type)) {
+            return alert(`File type not allowed: ${file.type}. Please select a valid file.`);
+        }
+
+        formData.append('files[]', file); // Append files as an array if handling multiple
+    }
+    
+    formData.append('fileName', fileName);
 
     try {
-        // رفع الملف إلى السيرفر
-        const response = await fetch('http://localhost:5007/api/data', {
+        const response = await fetch('http://127.0.0.1:5009/api/data', {
             method: 'POST',
             body: formData,
         });
 
-        if (!response.ok) throw new Error('Failed to upload file.');
+        if (!response.ok) {
+            throw new Error('Failed to upload file.');
+        }
 
-        // استلام الملفات مع الأسماء
-        const files = await response.json();
-        
-        // عرض الملفات في الواجهة الأمامية
+        const filesResponse = await response.json();
+
+        // Display uploaded files
         const fileViewer = document.getElementById('fileViewer');
-        fileViewer.innerHTML = ''; // تفريغ المحتوى السابق
-        files.forEach(({ fileName, fileUrl }) => {
+        fileViewer.innerHTML = ''; // Clear previous content
+
+        filesResponse.forEach(({ fileName, fileUrl }) => {
             const link = document.createElement('a');
             link.href = fileUrl;
             link.target = '_blank';
             link.textContent = fileName;
             fileViewer.appendChild(link);
-            fileViewer.appendChild(document.createElement('br')); // إضافة فاصل بين الروابط
+            fileViewer.appendChild(document.createElement('br'));
         });
     } catch (error) {
         console.error('Error uploading file:', error);
+        alert('Error: ' + error.message);
     }
 });
