@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Upload File</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-    #fileViewer {
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج إدخال منتج</title>
+    <link rel="stylesheet" href="form.css">
 </head>
 <body>
-  <h2>Upload a File</h2>
-  <input type="file" id="fileInput" />
-  <button id="uploadBtn">Upload</button>
-  <div id="fileViewer"></div>
+    <div class="container">
+        <h1>إدخال منتج جديد</h1>
+        <form id="productForm" enctype="multipart/form-data">
+            <input type="text" id="productName" placeholder="اسم المنتج" required />
+            <input type="number" id="productPrice" placeholder="سعر المنتج" required />
+            <input type="file" id="productImage" name="img" accept="image/*" required />
+            <button type="submit">إضافة المنتج</button>
+        </form>
+        
 
-  <script src="form.js"></script>
+        <div id="productList">
+            <h2>المنتجات المدخلة</h2>
+            <ul id="products"></ul>
+        </div>
+    </div>
+    
+    <script src="form.js"></script>
 </body>
 </html>

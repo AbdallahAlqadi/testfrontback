@@ -1,55 +1,24 @@
-const Data = require('../models/data'); // Make sure the path is correct
-const fs = require('fs').promises;
-const path = require('path');
+const Data = require('../models/data');
 
-// Ensure uploads directory exists
-const ensureUploadsDirectory = async () => {
-    const dir = path.join(__dirname, '../uploads');
-    try {
-        await fs.mkdir(dir, { recursive: true });
-    } catch (error) {
-        console.error('Error creating uploads directory:', error);
-    }
-};
+//creat:بستخدمها لما بدي  انزل بياناتي في داتابيز   او اضييف بيانات
 
+//find:لما بدي اعمل read ل البيانات او احذفها او  تعديلها
+
+
+
+//post
+//ببعت Data ل backend
 exports.createData = async (req, res) => {
-    const { fileName } = req.body;
-    const file = req.files.file;
+    const { nameproduct, price, img } = req.body;
 
-    if (!file) return res.status(400).json({ error: 'No file uploaded.' });
-
-    const filePath = path.join(__dirname, '../uploads', fileName);
-    
     try {
-        await ensureUploadsDirectory();
-        await fs.writeFile(filePath, file.data);
-
-        const newData = new Data({ title: fileName, file: filePath });
-        await newData.save();
-
-        const files = await Data.find();
-        const result = files.map(({ title, file }) => ({
-            fileName: title,
-            fileUrl: file,
-        }));
-
-        res.json(result);
+        const newData = { nameproduct, price, img };
+        console.log(newData);
+        
+        const dbData = await Signup.create(newData);
+        
+        res.status(200).json({ message: `User created successfully: ${dbData}` });
     } catch (error) {
-        console.error('Error saving file or data:', error);
-        res.status(500).json({ error: 'An error occurred while uploading the file.' });
-    }
-};
-
-exports.getData = async (req, res) => {
-    try {
-        const files = await Data.find();
-        const result = files.map(({ title, file }) => ({
-            fileName: title,
-            fileUrl: file,
-        }));
-        res.json(result);
-    } catch (error) {
-        console.error('Error fetching files:', error);
-        res.status(500).json({ error: 'An error occurred while retrieving files.' });
+        res.status(400).json({ message: error.message });
     }
 };

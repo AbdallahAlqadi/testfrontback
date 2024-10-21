@@ -1,12 +1,14 @@
-const mongoose = require('mongoose');
 
-const dataSchema = new mongoose.Schema({
-    title: { type: String, required: true, index: true },
-    file: { type: String, required: true },
-}, {
-    timestamps: true, // Automatically manage createdAt and updatedAt fields
-});
+const mongoose=require('mongoose')
 
-const Data = mongoose.model('Data', dataSchema);
+//انه اي user بدي اضيفه لازم يحتوي على username,phone
+const dataSchema=new mongoose.Schema({
+    nameproduct:{type:String,required:true},
+    price:{type:Number,required:true,unique: true},
+    img:{type:String,required:true}
 
-module.exports = Data;
+})
+
+const Data=mongoose.model('data',dataSchema);
+
+module.exports=Data;

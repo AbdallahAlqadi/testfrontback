@@ -1,59 +1,37 @@
-document.getElementById('uploadBtn').addEventListener('click', async () => {
-    const fileInput = document.getElementById('fileInput');
-    const files = fileInput.files;
+const form = document.getElementById('productForm');
 
-    if (files.length === 0) {
-        return alert('Please select a file.');
-    }
 
-    const fileName = prompt('Please enter a name for the file:');
-    if (!fileName) {
-        return alert('Please enter a name for the file.');
-    }
 
-    const formData = new FormData();
-    
-    // Loop through the selected files and append them to formData
-    for (let i = 0; i < files.length; i++) {
-        const file = files[i];
 
-        // Example of file type validation (optional)
-        const allowedTypes = ['image/jpeg', 'image/png', 'application/pdf']; // Add other types as needed
-        if (!allowedTypes.includes(file.type)) {
-            return alert(`File type not allowed: ${file.type}. Please select a valid file.`);
-        }
+form.addEventListener('submit', async function (e) {
+    e.preventDefault(); 
 
-        formData.append('files[]', file); // Append files as an array if handling multiple
-    }
-    
-    formData.append('fileName', fileName);
+   
+    const userData = {
+        nameproduct: document.getElementById('productName').value,
+        price:document.getElementById('productPrice').value,
+        img: document.getElementById('productImage').files[0]
+    };
 
     try {
-        const response = await fetch('http://127.0.0.1:5009/api/data', {
-            method: 'POST',
-            body: formData,
+        const response = await fetch('http://127.0.0.1:4000/api/data', {
+            method: 'POST', 
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(userData)
         });
 
-        if (!response.ok) {
-            throw new Error('Failed to upload file.');
-        }
+        if (!response.ok) throw new Error(`Error: ${response.status}`);
 
-        const filesResponse = await response.json();
+        const data = await response.json();
+        console.log('Success:', data);
+        getData(); 
 
-        // Display uploaded files
-        const fileViewer = document.getElementById('fileViewer');
-        fileViewer.innerHTML = ''; // Clear previous content
+        // مسح الحقول
+        form.reset();
+    
 
-        filesResponse.forEach(({ fileName, fileUrl }) => {
-            const link = document.createElement('a');
-            link.href = fileUrl;
-            link.target = '_blank';
-            link.textContent = fileName;
-            fileViewer.appendChild(link);
-            fileViewer.appendChild(document.createElement('br'));
-        });
     } catch (error) {
-        console.error('Error uploading file:', error);
-        alert('Error: ' + error.message);
+        console.error('Error:', error);
+        
     }
 });
