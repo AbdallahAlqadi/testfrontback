@@ -1,6 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+    background-color: #e9ecef; /* Light gray background for a softer look */
     margin: 0;
     padding: 20px;
 }
@@ -8,43 +8,54 @@ body {
 .container {
     max-width: 1000px;
     margin: auto;
-    background: #fff;
+    background: #ffffff; /* Keeping the container white for contrast */
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px; /* More rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
 }
 
 h1, h2 {
-    color: #333;
+    color: #343a40; /* Darker gray for better readability */
     text-align: center;
 }
 
 label {
     display: block;
-    margin: 10px 0 5px;
+    margin: 12px 0 6px; /* Increased spacing for better aesthetics */
+    font-weight: bold; /* Bold labels for emphasis */
 }
 
 input[type="text"],
 input[type="number"],
 input[type="file"] {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 10px; /* Increased padding for comfort */
+    margin-bottom: 12px; /* Slightly larger margin for spacing */
+    border: 2px solid #ced4da; /* Darker border for visibility */
+    border-radius: 6px; /* Softer corners */
+    transition: border-color 0.3s; /* Smooth transition on focus */
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus {
+    border-color: #007bff; /* Blue border on focus for emphasis */
 }
 
 button {
-    background-color: #5cb85c;
+    background-color: #28a745; /* Green button for 'submit' actions */
     color: white;
-    padding: 10px;
+    padding: 12px 16px; /* Slightly larger button for better usability */
     border: none;
-    border-radius: 4px;
+    border-radius: 6px; /* Softer corners */
     cursor: pointer;
+    font-size: 1em; /* Consistent font size */
+    transition: background-color 0.3s, transform 0.2s; /* Added scale effect on hover */
 }
 
 button:hover {
-    background-color: #4cae4c;
+    background-color: #218838; /* Darker green on hover */
+    transform: scale(1.05); /* Slight scale for feedback */
 }
 
 #productList {
@@ -55,25 +66,25 @@ button:hover {
 #products {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 20px; /* Space between product cards */
     justify-content: center;
     margin: 20px 0;
 }
 
 /* Styling individual product cards */
 .card {
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    background-color: #ffffff; /* Keep cards white for contrast */
+    border-radius: 12px; /* Softer corners */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
     overflow: hidden;
-    width: 300px;
+    width: 320px; /* Slightly wider cards */
     text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s; /* Added scale on hover */
 }
 
 .card:hover {
-   
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25); /* Deeper shadow on hover */
+    transform: translateY(-4px); /* Slight lift on hover */
 }
 
 /* Image styling */
@@ -85,35 +96,36 @@ button:hover {
 }
 
 .card:hover .product-image {
-    transform: scale(1.05);
+    transform: scale(1.1); /* Slightly larger image on hover */
 }
 
 /* Product name */
 .product-name {
-    font-size: 1.6em;
+    font-size: 1.5em; /* Adjusted size for better visibility */
     margin: 15px 0;
-    color: #333;
+    color: #495057; /* A softer dark gray for names */
 }
 
 /* Product price */
 .product-price {
-    font-size: 1.3em;
+    font-size: 1.4em; /* Slightly larger for emphasis */
     margin-bottom: 15px;
-    color: #007BFF;
+    color: #007bff; /* Blue for pricing to attract attention */
 }
 
 /* Button styling for 'Add to Cart' */
 .card button {
-    background-color: #007BFF;
+    background-color: #007bff; /* Blue for consistency */
     color: white;
     padding: 10px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px; /* Softer corners */
     cursor: pointer;
-    margin-bottom: 10px;
-    transition: background-color 0.3s;
+    margin-bottom: 12px; /* Consistent spacing */
+    transition: background-color 0.3s, transform 0.2s; /* Added scale effect on hover */
 }
 
 .card button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight scale for feedback */
 }
