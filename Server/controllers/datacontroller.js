@@ -49,15 +49,16 @@ exports.getData=async (req,res)=>{
 // تعديل اسم الدالة إلى deleteData
 exports.deleteData = async (req, res) => {
     try {
-        const id = req.params.id;
-        const deletedData = await Data.findByIdAndDelete(id); // استخدم findByIdAndDelete للتحقق من الوجود
-
-        if (!deletedData) {
-            return res.status(404).json({ message: 'Data not found' });
-        }
-
-        res.status(200).json({ message: 'Data deleted successfully', deletedData });
+      const id = req.params.id;
+      const deletedData = await Data.findByIdAndDelete(id); // استخدم findByIdAndDelete للتحقق من الوجود
+  
+      if (!deletedData) {
+        return res.status(404).json({ message: 'Data not found' });
+      }
+  
+      res.status(200).json({ message: 'Data deleted successfully', deletedData });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+      res.status(500).json({ error: error.message });
     }
-};
+  };
+  
