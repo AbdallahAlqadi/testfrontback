@@ -15,7 +15,7 @@ form.addEventListener('submit', async function (e) {
 
     // تحقق من حجم الصورة
     if (img.size > 30 * 1024 * 1024) { // مثال: 5 ميجابايت
-        alert('حجم الصورة يجب أن يكون أقل من 5 ميجابايت'); // "Image size must be less than 5 MB"
+        alert('حجم الصورة يجب أن يكون أقل من 30 ميجابايت'); // "Image size must be less than 5 MB"
         return;
     }
 
