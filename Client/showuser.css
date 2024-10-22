@@ -122,8 +122,9 @@ body {
     grid-template-columns: auto auto auto ;
 
 margin-top: 170px;
-margin-left: 90px;
-row-gap: 35px;
+margin-left: 168px;
+row-gap: 45px;
+margin-bottom: 50px;
 }
 
 .card {
@@ -199,10 +200,11 @@ row-gap: 35px;
     font-weight: bold;              /* جعل النص غامق */
     column-gap: 1px;                /* الفجوة بين الأعمدة */
     color: #333;                    /* لون النص */
-    padding: 10px 15px;             /* مساحة داخلية حول النص */
     border-radius: 5px;             /* زوايا دائرية */
     transition: background-color 0.3s, color 0.3s; /* تأثير سلس عند تغيير الخلفية واللون */
+    ;
 }
+
 
 /* تأثير عند التمرير على الرابط */
 .nav-links:hover {
