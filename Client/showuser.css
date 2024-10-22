@@ -17,36 +17,33 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr; /* تساوي عرض الأعمدة */
     gap: 20px; /* مسافة بين الأعمدة */
- }
- 
- #text {
-     text-align: center;
-     padding: 30px; /* تقليل الحشوة */
-     color: black;
-     margin: 220px auto; /* توسيط العنصر وإزالة المسافة الزائدة */
-     max-width: 800px; /* تحديد عرض أقصى لتحسين التناسق */
-     margin-top: 240px;
- }
- 
- #text h1 {
-     font-size: 48px; /* حجم العنوان متناسق */
-     font-weight: bold;
-     margin-bottom: 20px;
-     text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
-     color: orangered;
-     margin-right: 100px;
- }
- 
- #text p {
-     font-size: 28px; /* حجم أصغر قليلاً لتناسب التباعد */
-     line-height: 1.8; /* زيادة التباعد بين السطور لتحسين القراءة */
-     margin-bottom: 20px; /* إضافة هوامش سفلية صغيرة */
-     margin-right: 100px;
+}
 
-     text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
- }
- 
+#text {
+    text-align: center;
+    padding: 30px; /* تقليل الحشوة */
+    color: black;
+    margin: 220px auto; /* توسيط العنصر وإزالة المسافة الزائدة */
+    max-width: 800px; /* تحديد عرض أقصى لتحسين التناسق */
+    margin-top: 240px;
+}
 
+#text h1 {
+    font-size: 48px; /* حجم العنوان متناسق */
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+    color: orangered;
+    margin-right: 100px;
+}
+
+#text p {
+    font-size: 28px; /* حجم أصغر قليلاً لتناسب التباعد */
+    line-height: 1.8; /* زيادة التباعد بين السطور لتحسين القراءة */
+    margin-bottom: 20px; /* إضافة هوامش سفلية صغيرة */
+    margin-right: 100px;
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+}
 
 /* Navbar Styles */
 .navbar {
@@ -68,13 +65,10 @@ body {
     padding: 0 20px;
 }
 
-
 .navbar .nav-links {
     list-style: none;
     display: flex;
 }
-
-
 
 .navbar .nav-links a {
     color: white;
@@ -90,10 +84,9 @@ body {
 
 #imgbody {
     margin-top: 100px;
- width: 590px;
+    width: 590px;
     height: 565px;
     border-radius: 390px;
-
 }
 
 /* Footer Styles */
@@ -118,17 +111,16 @@ body {
     margin-left: 475px;
 }
 
-#listitem{
-
+#listitem {
     display: grid;
-    grid-template-columns: auto auto auto ;
-
-margin-top: 170px;
-margin-left: 155px;
-row-gap: 45px;
-margin-bottom: 50px;
+    grid-template-columns: auto auto auto;
+    margin-top: 170px;
+    margin-left: 155px;
+    row-gap: 45px;
+    margin-bottom: 50px;
 }
 
+/* Improved Card Styles */
 .card {
     background: linear-gradient(145deg, #ffffff, #f0f0f0);
     border-radius: 20px;
@@ -197,6 +189,7 @@ margin-bottom: 50px;
     z-index: 1;
     position: relative;
 }
+
 .nav-links {
     text-decoration: none;           /* إزالة الخط السفلي من الروابط */
     font-weight: bold;              /* جعل النص غامق */
@@ -204,15 +197,12 @@ margin-bottom: 50px;
     color: #333;                    /* لون النص */
     border-radius: 5px;             /* زوايا دائرية */
     transition: background-color 0.3s, color 0.3s; /* تأثير سلس عند تغيير الخلفية واللون */
-    ;
 }
-
 
 /* تأثير عند التمرير على الرابط */
 .nav-links:hover {
     color: #fff;                    /* تغيير لون النص عند التمرير */
 }
-
 
 /* Add to Cart button */
 .card button {
@@ -235,7 +225,7 @@ margin-bottom: 50px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-
+/* Cart Modal */
 .cart-modal {
     display: none; /* إخفاء السلة بشكل افتراضي */
     position: fixed;
@@ -254,12 +244,15 @@ margin-bottom: 50px;
     transition: all 0.3s ease; /* تأثير التحويل السلس */
 }
 
-
 .cart-modal h2 {
     font-size: 26px;
     margin-bottom: 15px;
     color: #444; /* لون أكثر عمقاً */
     font-family: 'Arial', sans-serif; /* نوع خط مختلف */
+    text-align: center; /* توسيط العنوان */
+    padding: 10px;
+    background: linear-gradient(145deg, #e3f2fd, #bbdefb); /* خلفية جميلة */
+    border-radius: 10px; /* زوايا دائرية */
 }
 
 #cart-items {
@@ -304,10 +297,6 @@ margin-bottom: 50px;
     transform: translateY(-2px); /* تأثير رفع الزر */
 }
 
-
-
-
-
 .quantity-controls {
     display: flex;
     justify-content: center;
@@ -318,6 +307,7 @@ margin-bottom: 50px;
 .count-display {
     margin: 0 10px;
 }
+
 .add-item-btn, .increase-btn, .decrease-btn {
     background-color: #ff5733;
     color: white;
@@ -336,8 +326,6 @@ margin-bottom: 50px;
     transform: scale(0.95);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
-
-
 
 .custom-alert {
     position: fixed;

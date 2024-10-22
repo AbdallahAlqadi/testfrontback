@@ -10,7 +10,7 @@ var closeCartButton = document.getElementById('close-cart');
 // Fetch product data
 async function getData() {
     try {
-        const response = await fetch('http://127.0.0.1:4000/api/data'); // Ensure the URL is correct
+        const response = await fetch('http://127.0.0.1:4000/api/data');
         const information = await response.json();
 
         let content = '';
@@ -26,7 +26,7 @@ async function getData() {
                         <span id="count-${info.nameproduct}" class="count-display">0</span>
                         <button class="increase-btn" data-name="${info.nameproduct}">+</button>
                     </div>
-                    <button class="add-item-btn" data-name="${info.nameproduct}" data-price="${info.price}">إضافة إلى السلة</button>
+                    <button class="add-item-btn" data-name="${info.nameproduct}" data-price="${info.price}" data-img="${info.img}">إضافة إلى السلة</button>
                 </div>
             `;
         });
@@ -67,6 +67,7 @@ function showAlert(message) {
 // Add to cart
 function addToCart(event) {
     const productName = event.target.getAttribute('data-name');
+    const productImage = event.target.getAttribute('data-img');
     const quantity = parseInt(document.getElementById(`count-${productName}`).textContent);
 
     if (quantity > 0) {
@@ -79,15 +80,14 @@ function addToCart(event) {
             cart.push({
                 name: productName,
                 price: productPrice,
-                quantity: quantity
+                quantity: quantity,
+                img: productImage // Add image URL here
             });
         }
 
         updateCart();
         // Reset quantity display
         document.getElementById(`count-${productName}`).textContent = '0';
-        document.getElementById(`quantity-${productName}`).textContent = `(x${existingProduct ? existingProduct.quantity : quantity})`;
-        document.getElementById(`quantity-${productName}`).style.display = 'block';
     } else {
         showAlert('يرجى تحديد كمية صحيحة.');
     }
@@ -124,8 +124,10 @@ cartIcon.addEventListener('click', () => {
     if (cart.length > 0) {
         cart.forEach(item => {
             const listItem = document.createElement('li');
-            const totalPrice = (item.price * item.quantity).toFixed(2);
-            listItem.textContent = `${item.name} (x${item.quantity}) - $${item.price} each, Total: $${totalPrice}`;
+            listItem.innerHTML = `
+                <img src="${item.img}" alt="${item.name}" class="cart-item-image" style="width: 50px; height: 50px; margin-right: 10px;">
+                ${item.name} (x${item.quantity}) - $${item.price} each, Total: $${(item.price * item.quantity).toFixed(2)}
+            `;
             cartItemsList.appendChild(listItem);
         });
     } else {
@@ -161,7 +163,7 @@ checkoutButton.addEventListener('click', () => {
             }
         }).catch(error => console.error('Error:', error));
     } else {
-        showAlert('سلتك فارغة. يرجى إضافة عناصر قبل تقديم الطلب.'); // Alert when cart is empty during checkout
+        showAlert('سلتك فارغة. يرجى إضافة عناصر قبل تقديم الطلب.');
     }
 });
 
