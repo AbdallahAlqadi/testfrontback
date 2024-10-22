@@ -101,3 +101,20 @@ h1 {
         font-size: 14px;
     }
 }
+
+
+/* Cart Icon */
+.cart {
+    position: relative;
+}
+
+#cart-icon {
+    color: #ffffff;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+
+/* Cart Modal */
+
+
+

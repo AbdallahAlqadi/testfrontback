@@ -10,38 +10,50 @@
     <!-- Navbar -->
     <nav class="navbar">
         <div class="container">
-            <h1 style=" font-size: 2.5em; color: #fcf7f6; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);margin-left: -170px;">
+            <h1 style="font-size: 2.5em; color: #fcf7f6; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); margin-left: -170px;">
                 Fast Food
             </h1>
             <ul style="margin-right: -140px;" class="nav-links">
-
                 <li><a href="#listitem">Menu</a></li>
                 <li><a href="tel:0790946125">Connect</a></li>
-
+                <!-- Cart Icon -->
+                <li class="cart">
+                    <a href="#" id="cart-icon">
+                        🛒 (<span id="cart-count">0</span>)
+                    </a>
+                </li>
             </ul>
-                    </div>
+        </div>
     </nav>
+
+<!-- Cart Modal (Hidden by default) -->
+<div id="cart-modal" class="cart-modal">
+    <h2>سلة التسوق</h2>
+    <ul id="cart-items"></ul>
+    <button id="checkout-button">إرسال الطلب</button>
+    <button id="close-cart">إغلاق</button>
+</div>
+
+
 
     <!-- Main Content -->
     <div class="content">
-       <img  id="imgbody" src="https://img.freepik.com/premium-photo/picture-many-different-fast-food-items-including-hamburgers-fries-cup-sauce_873925-7490.jpg?w=2000" alt="" srcset="">
-
-       <div id="text">
-        <h1>أفضل النكهات بأفضل الأسعار!</h1>
-        <p>استمتع بتجربة الطعام السريع اللذيذ بأسعار تنافسية ترضي الجميع</p>
-       </div>
+        <img id="imgbody" src="https://img.freepik.com/premium-photo/picture-many-different-fast-food-items-including-hamburgers-fries-cup-sauce_873925-7490.jpg?w=2000" alt="Fast Food Items" />
+        <div id="text">
+            <h1>أفضل النكهات بأفضل الأسعار!</h1>
+            <p>استمتع بتجربة الطعام السريع اللذيذ بأسعار تنافسية ترضي الجميع</p>
+        </div>
     </div>
 
-    <div id="listitem">
+    <div id="listitem"></div>
 
-    </div>
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2024 جميع الحقوق محفوظة.</p>
-         
         </div>
     </footer>
+
     <script src="showuser.js"></script>
 </body>
 </html>

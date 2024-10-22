@@ -12,45 +12,50 @@ body {
 }
 
 .content {
-   padding-left: 110px;
-   margin-top: 50px;
-   display: grid;grid-template-columns: auto auto;
-}
+    padding-left: 140px;
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* تساوي عرض الأعمدة */
+    gap: 20px; /* مسافة بين الأعمدة */
+ }
+ 
+ #text {
+     text-align: center;
+     padding: 30px; /* تقليل الحشوة */
+     color: black;
+     margin: 220px auto; /* توسيط العنصر وإزالة المسافة الزائدة */
+     max-width: 800px; /* تحديد عرض أقصى لتحسين التناسق */
+     margin-top: 240px;
+ }
+ 
+ #text h1 {
+     font-size: 48px; /* حجم العنوان متناسق */
+     font-weight: bold;
+     margin-bottom: 20px;
+     text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+     color: orangered;
+     margin-right: 100px;
+ }
+ 
+ #text p {
+     font-size: 28px; /* حجم أصغر قليلاً لتناسب التباعد */
+     line-height: 1.8; /* زيادة التباعد بين السطور لتحسين القراءة */
+     margin-bottom: 20px; /* إضافة هوامش سفلية صغيرة */
+     margin-right: 100px;
 
-#text {
-    text-align: center;
-    padding: 50px;
-    color: black; /* اللون الأساسي للنص */
-    margin: 205px; /* توسيط العنصر في الصفحة */
-}
-
-#text h1 {
-    font-size: 53px; /* حجم كبير للعنوان */
-    font-weight: bold;
-    margin-bottom: 20px; /* مسافة بين العنوان والنص */
-    text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); /* ظل بسيط للنص */
-
-    color: orangered;
-    
-}
-
-#text p {
-    font-size: 31px; /* حجم النص الأساسي */
-    line-height: 1.6; /* ارتفاع السطر للتباعد */
-    margin-bottom: 0; /* إزالة الهوامش السفلية */
-    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2); /* ظل بسيط للنص */
-}
+     text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+ }
+ 
 
 
 /* Navbar Styles */
 .navbar {
-    background-color: #333;
+    background-color: #2c3e50;
     color: white;
     padding: 15px 0;
     top: 0;
     width: 100%;
     z-index: 1000;
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAAA1BMVEX/XgA92nntAAAASElEQVR4nO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIC3AcUIAAFkqh/QAAAAAElFTkSuQmCC');
 }
 
 .navbar .container {
@@ -63,19 +68,13 @@ body {
     padding: 0 20px;
 }
 
-.navbar .logo {
-    font-size: 24px;
-    font-weight: bold;
-}
 
 .navbar .nav-links {
     list-style: none;
     display: flex;
 }
 
-.navbar .nav-links li {
-    margin-left: 20px;
-}
+
 
 .navbar .nav-links a {
     color: white;
@@ -90,15 +89,16 @@ body {
 }
 
 #imgbody {
-    margin-top: 120px;
- width: 570px;
-    height: 560px;
+    margin-top: 100px;
+ width: 590px;
+    height: 565px;
     border-radius: 390px;
+
 }
 
 /* Footer Styles */
 .footer {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAAA1BMVEX/XgA92nntAAAASElEQVR4nO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIC3AcUIAAFkqh/QAAAAAElFTkSuQmCC');
+    background-color: #2c3e50;
     color: white;
     padding: 20px 0;
     text-align: center;
@@ -234,4 +234,62 @@ margin-bottom: 50px;
     background: linear-gradient(145deg, #2ecc71, #27ae60);
     transform: scale(1.1);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.cart-modal {
+    display: none; /* إخفاء السلة بشكل افتراضي */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 20px;
+    text-align: right; /* لضبط النصوص من اليمين */
+}
+
+.cart-modal h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#cart-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#cart-items li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#cart-items li:last-child {
+    border-bottom: none; /* إزالة الحد السفلي من آخر عنصر */
+}
+
+#checkout-button,
+#close-cart {
+    background-color: #28a745; /* لون الزر */
+    color: white; /* لون النص */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    transition: background-color 0.3s; /* تأثير التحويل */
+}
+
+#checkout-button:hover,
+#close-cart:hover {
+    background-color: #218838; /* لون الزر عند التحويم */
 }
