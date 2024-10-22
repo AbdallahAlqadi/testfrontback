@@ -195,6 +195,22 @@ margin-bottom: 50px;}
     z-index: 1;
     position: relative;
 }
+.nav-links {
+    text-decoration: none;           /* إزالة الخط السفلي من الروابط */
+    font-weight: bold;              /* جعل النص غامق */
+    column-gap: 1px;                /* الفجوة بين الأعمدة */
+    color: #333;                    /* لون النص */
+    padding: 10px 15px;             /* مساحة داخلية حول النص */
+    border-radius: 5px;             /* زوايا دائرية */
+    transition: background-color 0.3s, color 0.3s; /* تأثير سلس عند تغيير الخلفية واللون */
+}
+
+/* تأثير عند التمرير على الرابط */
+.nav-links:hover {
+    background-color: #FF5733;      /* تغيير لون الخلفية عند التمرير */
+    color: #fff;                    /* تغيير لون النص عند التمرير */
+}
+
 
 /* Add to Cart button */
 .card button {
