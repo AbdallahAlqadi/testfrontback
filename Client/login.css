@@ -1,7 +1,7 @@
 body {
     background-image: 
     linear-gradient(rgba(0, 0, 0, 0.315), rgba(0, 0, 0, 0.383)), 
-        url('https://goodeats.io/front-alt.jpg');
+        url('https://img.freepik.com/premium-photo/array-top-view-fast-food-burgers-creating-visual-feast-gastronomic-adventure_910684-3406.jpg?w=1060');
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -16,9 +16,10 @@ body {
 .login-container {
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(202, 198, 198, 0.9); /* Softer shadow */
-width: 35%;
-height: 45%;}
+    box-shadow: 0 8px 30px rgba(231, 232, 230, 0.9); /* Increased shadow for more depth */
+    width: 35%;
+    height: 45%;
+}
 
 
 h1 {

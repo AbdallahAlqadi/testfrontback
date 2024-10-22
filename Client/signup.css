@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-image: url('https://goodeats.io/front-alt.jpg'), linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8));
+    background-image: url('https://img.freepik.com/premium-photo/array-top-view-fast-food-burgers-creating-visual-feast-gastronomic-adventure_910684-3406.jpg?w=1060'), linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8));
     background-size: cover; /* Ensures the image covers the entire body */
     display: flex;
     justify-content: center;
@@ -20,7 +20,7 @@ body {
    
     padding: 50px;
     border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(202, 198, 198, 0.9); /* Softer shadow */
+    box-shadow: 0 8px 30px rgba(231, 232, 230, 0.9); /* Increased shadow for more depth */
     width: 33%;
     
     background-size: cover; /* تغطية المساحة بالكامل */
