@@ -73,6 +73,8 @@ async function getData() {
                     <h2 class="product-name">${info.nameproduct}</h2>
                     <p class="product-price">$${info.price}</p>
                     <button id="delete" onclick="deleteData('${info._id}')">Delete</button>
+                                        <button id="delete" >Update</button>
+
                 </div>
             `;
             products.innerHTML += productCard;
