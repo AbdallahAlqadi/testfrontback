@@ -10,7 +10,7 @@ var closeCartButton = document.getElementById('close-cart');
 // Fetch product data
 async function getData() {
     try {
-        const response = await fetch('http://127.0.0.1:4000/api/data'); // تأكد من صحة الرابط
+        const response = await fetch('http://127.0.0.1:4000/api/data'); // Ensure the URL is correct
         const information = await response.json();
 
         let content = '';
@@ -26,8 +26,7 @@ async function getData() {
                         <span id="count-${info.nameproduct}" class="count-display">0</span>
                         <button class="increase-btn" data-name="${info.nameproduct}">+</button>
                     </div>
-                                        <button class="add-item-btn" data-name="${info.nameproduct}" data-price="${info.price}">إضافة إلى السلة</button>
-
+                    <button class="add-item-btn" data-name="${info.nameproduct}" data-price="${info.price}">إضافة إلى السلة</button>
                 </div>
             `;
         });
@@ -49,6 +48,20 @@ async function getData() {
         console.error('Error:', error);
         listitem.innerHTML = `<p>فشل تحميل بيانات المنتج. يرجى المحاولة مرة أخرى لاحقًا.</p>`;
     }
+}
+
+// Show custom alert message
+function showAlert(message) {
+    const alertMessage = document.getElementById('alert-message');
+    const customAlert = document.getElementById('custom-alert');
+
+    alertMessage.textContent = message;
+    customAlert.style.display = 'block';
+
+    const closeButton = document.getElementById('alert-close');
+    closeButton.onclick = function() {
+        customAlert.style.display = 'none';
+    };
 }
 
 // Add to cart
@@ -76,7 +89,7 @@ function addToCart(event) {
         document.getElementById(`quantity-${productName}`).textContent = `(x${existingProduct ? existingProduct.quantity : quantity})`;
         document.getElementById(`quantity-${productName}`).style.display = 'block';
     } else {
-        alert('يرجى تحديد كمية صحيحة.');
+        showAlert('يرجى تحديد كمية صحيحة.');
     }
 }
 
@@ -144,10 +157,13 @@ checkoutButton.addEventListener('click', () => {
                 updateCart();
                 cartModal.style.display = 'none';
             } else {
-                alert('فشل تقديم الطلب');
+                showAlert('فشل تقديم الطلب');
             }
         }).catch(error => console.error('Error:', error));
+    } else {
+        showAlert('سلتك فارغة. يرجى إضافة عناصر قبل تقديم الطلب.'); // Alert when cart is empty during checkout
     }
 });
 
+// Fetch product data on page load
 getData();

@@ -210,7 +210,6 @@ margin-bottom: 50px;
 
 /* تأثير عند التمرير على الرابط */
 .nav-links:hover {
-    background-color: #FF5733;      /* تغيير لون الخلفية عند التمرير */
     color: #fff;                    /* تغيير لون النص عند التمرير */
 }
 
@@ -243,19 +242,24 @@ margin-bottom: 50px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
-    background-color: rgba(255, 255, 255, 0.9);
+    width: 500px; /* زيادة عرض السلة */
+    max-height: 80%; /* تعيين الحد الأقصى للارتفاع */
+    background-color: rgba(255, 255, 255, 0.95);
     border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     padding: 20px;
     text-align: right; /* لضبط النصوص من اليمين */
+    overflow-y: auto; /* لإظهار شريط تمرير عمودي إذا كان المحتوى طويلاً */
+    transition: all 0.3s ease; /* تأثير التحويل السلس */
 }
 
+
 .cart-modal h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
+    font-size: 26px;
+    margin-bottom: 15px;
+    color: #444; /* لون أكثر عمقاً */
+    font-family: 'Arial', sans-serif; /* نوع خط مختلف */
 }
 
 #cart-items {
@@ -268,8 +272,13 @@ margin-bottom: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 12px;
     border-bottom: 1px solid #ddd;
+    transition: background-color 0.2s; /* تأثير التحويل للخلفية */
+}
+
+#cart-items li:hover {
+    background-color: rgba(238, 238, 238, 0.5); /* تغيير لون الخلفية عند التحويم */
 }
 
 #cart-items li:last-child {
@@ -278,21 +287,23 @@ margin-bottom: 50px;
 
 #checkout-button,
 #close-cart {
-    background-color: #28a745; /* لون الزر */
+    background-color: #007bff; /* لون الزر */
     color: white; /* لون النص */
     border: none;
     border-radius: 5px;
-    padding: 10px 15px;
+    padding: 12px 15px;
     cursor: pointer;
     margin-top: 20px;
     width: 100%;
-    transition: background-color 0.3s; /* تأثير التحويل */
+    transition: background-color 0.3s, transform 0.2s; /* تأثير التحويل */
 }
 
 #checkout-button:hover,
 #close-cart:hover {
-    background-color: #218838; /* لون الزر عند التحويم */
+    background-color: #0056b3; /* لون الزر عند التحويم */
+    transform: translateY(-2px); /* تأثير رفع الزر */
 }
+
 
 
 
@@ -324,4 +335,39 @@ margin-bottom: 50px;
 .add-item-btn:active, .increase-btn:active, .decrease-btn:active {
     transform: scale(0.95);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.custom-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9); /* تغيير الخلفية إلى لون أبيض شفاف */
+    color: #333; /* لون نص أغمق لتحسين القراءة */
+    border: 1px solid #e0a800; /* تغيير لون الحدود */
+    padding: 20px;
+    border-radius: 8px; /* زيادة انحناء الزوايا */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* إضافة ظل لجعلها بارزة */
+    z-index: 1000;
+    transition: transform 0.3s ease; /* إضافة تأثير عند ظهور التنبيه */
+}
+
+.custom-alert.show {
+    transform: translate(-50%, -50%) scale(1.05); /* تأثير عند ظهور التنبيه */
+}
+
+.custom-alert button {
+    background-color: #e0a800; /* لون زر أكثر إشراقًا */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* إضافة تأثير لتغيير لون الزر */
+}
+
+.custom-alert button:hover {
+    background-color: #d39e00; /* تغيير لون الزر عند التمرير فوقه */
 }
