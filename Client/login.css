@@ -48,7 +48,7 @@ button {
     margin-left: 4%;
     width: 92%;
     padding: 10px;
-    background-color: #007BFF;
+    background-color: orangered;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -63,7 +63,7 @@ button:hover {
 
 p {
     text-align: center;
-    color: #55a3f1;
+    color: orangered;
 }
 
 a {

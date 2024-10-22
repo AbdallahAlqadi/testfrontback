@@ -26,6 +26,8 @@ form.addEventListener('submit', async function (e) {
     }
     
     reader.readAsDataURL(img);
+    alert('Done creat  product');
+
 });
 
 async function PostREN(nameproduct, price, imgData) {

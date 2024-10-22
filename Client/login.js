@@ -15,7 +15,7 @@ form.addEventListener('submit', async function(e) {
         for (var i = 0; i < data.length; i++) {
             if (users == data[i].name && password == data[i].password) {
                 isValidUser = true; // إذا تم العثور على المستخدم
-                window.location.href = "home.html";     
+                window.location.href = "showuser.html";     
                 break; // الخروج من الحلقة إذا تم العثور على المستخدم
             }
         }
