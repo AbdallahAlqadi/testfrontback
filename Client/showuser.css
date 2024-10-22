@@ -13,7 +13,7 @@ body {
 
 .content {
    padding-left: 110px;
-   margin-top: 40px;
+   margin-top: 50px;
    display: grid;grid-template-columns: auto auto;
 }
 
@@ -21,12 +21,11 @@ body {
     text-align: center;
     padding: 50px;
     color: black; /* اللون الأساسي للنص */
-    border-radius: 15px; /* حواف ناعمة للصندوق */
-    margin: 140px; /* توسيط العنصر في الصفحة */
+    margin: 205px; /* توسيط العنصر في الصفحة */
 }
 
 #text h1 {
-    font-size: 48px; /* حجم كبير للعنوان */
+    font-size: 53px; /* حجم كبير للعنوان */
     font-weight: bold;
     margin-bottom: 20px; /* مسافة بين العنوان والنص */
     text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); /* ظل بسيط للنص */
@@ -34,7 +33,7 @@ body {
 }
 
 #text p {
-    font-size: 24px; /* حجم النص الأساسي */
+    font-size: 31px; /* حجم النص الأساسي */
     line-height: 1.6; /* ارتفاع السطر للتباعد */
     margin-bottom: 0; /* إزالة الهوامش السفلية */
     text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2); /* ظل بسيط للنص */
@@ -89,9 +88,9 @@ body {
 }
 
 #imgbody {
-    margin-top: 50px;
- width: 490px;
-    height: 480px;
+    margin-top: 120px;
+ width: 570px;
+    height: 560px;
     border-radius: 390px;
 }
 
@@ -122,10 +121,10 @@ body {
     display: grid;
     grid-template-columns: auto auto auto ;
 
-margin-top: 130px;
+margin-top: 170px;
 margin-left: 90px;
 row-gap: 35px;
-margin-bottom: 50px;}
+}
 
 .card {
     background: linear-gradient(145deg, #ffffff, #f0f0f0);
