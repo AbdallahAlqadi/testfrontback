@@ -1,0 +1,75 @@
+body {
+    background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.315), rgba(0, 0, 0, 0.383)), 
+        url('https://goodeats.io/front-alt.jpg');
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;  
+    margin: 0;
+    background-size: cover; /* تغطية المساحة بالكامل */
+    background-position: center; /* تمركز الصورة */
+
+}
+
+.login-container {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(202, 198, 198, 0.9); /* Softer shadow */
+width: 35%;
+height: 45%;}
+
+
+h1 {
+    text-align: center;
+    color: #f8f6f6;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #f7f6f6;
+}
+
+input {
+    width: 92%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    margin-left: 4%;
+    width: 92%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 3%;
+    font-size: larger;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+p {
+    text-align: center;
+    color: #55a3f1;
+}
+
+a {
+    color: #f3f5f7;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

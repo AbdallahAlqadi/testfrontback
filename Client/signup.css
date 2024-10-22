@@ -1,0 +1,99 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('https://goodeats.io/front-alt.jpg'), linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8));
+    background-size: cover; /* Ensures the image covers the entire body */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+.signup-container {
+   
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(202, 198, 198, 0.9); /* Softer shadow */
+    width: 33%;
+    
+    background-size: cover; /* تغطية المساحة بالكامل */
+    background-position: center; 
+}   
+
+/* Updated Typography */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #e4e8ec; /* Darker color for contrast */
+    font-size: 30px;
+    font-weight: 700;
+    font-family: 'Georgia', serif;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+}
+
+#form label {
+    margin-bottom: 8px;
+    color: #ebeff3; /* Dark gray */
+    font-weight: 600;
+}
+
+#form input {
+    padding: 14px;
+    margin-bottom: 25px;
+    border: 1px solid #ccc; /* Light gray */
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#form input:focus {
+    outline: none;
+    border-color: #3498db; /* Light blue */
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+}
+
+#form button {
+    background-color: #2794dd; /* Blue */
+    color: #fff;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 19px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s; /* Added shadow transition */
+}
+
+#form button:hover {
+    background-color: #1f6392; /* Darker blue */
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Add responsive design */
+@media (max-width: 500px) {
+    .signup-container {
+        padding: 40px;
+        width: 80%;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+  #form input,
+    #form button {
+        font-size: 14px;
+    }
+}

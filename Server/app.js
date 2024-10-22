@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const dataRoutes = require('./routes/dataRoutes');
+const signupRoutes = require('./routes/signupRoutes');
 
 
 
@@ -14,6 +15,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use('/api',dataRoutes);
 
+app.use('/api',signupRoutes);
 
 
 module.exports = app;
