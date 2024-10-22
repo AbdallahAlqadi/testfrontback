@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+   padding-left: 110px;
+   margin-top: 40px;
+   display: grid;grid-template-columns: auto auto;
+}
+
+#text {
+    text-align: center;
+    padding: 50px;
+    color: black; /* اللون الأساسي للنص */
+    border-radius: 15px; /* حواف ناعمة للصندوق */
+    margin: 140px; /* توسيط العنصر في الصفحة */
+}
+
+#text h1 {
+    font-size: 48px; /* حجم كبير للعنوان */
+    font-weight: bold;
+    margin-bottom: 20px; /* مسافة بين العنوان والنص */
+    text-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); /* ظل بسيط للنص */
+    
+}
+
+#text p {
+    font-size: 24px; /* حجم النص الأساسي */
+    line-height: 1.6; /* ارتفاع السطر للتباعد */
+    margin-bottom: 0; /* إزالة الهوامش السفلية */
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2); /* ظل بسيط للنص */
+}
+
+
+/* Navbar Styles */
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 15px 0;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAAA1BMVEX/XgA92nntAAAASElEQVR4nO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIC3AcUIAAFkqh/QAAAAAElFTkSuQmCC');
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 50px;
+    padding: 0 20px;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.navbar .nav-links li {
+    margin-left: 20px;
+}
+
+.navbar .nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+}
+
+.navbar .nav-links a:hover {
+    background-color: #555;
+    border-radius: 4px;
+}
+
+#imgbody {
+    margin-top: 50px;
+ width: 490px;
+    height: 480px;
+    border-radius: 390px;
+}
+
+/* Footer Styles */
+.footer {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQMAAADCCAMAAAB6zFdcAAAAA1BMVEX/XgA92nntAAAASElEQVR4nO3BMQEAAADCoPVPbQwfoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIC3AcUIAAFkqh/QAAAAAElFTkSuQmCC');
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto; /* This pushes the footer to the bottom */
+}
+
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer p {
+    margin-left: 475px;
+}
+
+#listitem{
+
+    display: grid;
+    grid-template-columns: auto auto auto ;
+
+margin-top: 130px;
+margin-left: 90px;
+row-gap: 35px;
+margin-bottom: 50px;}
+
+.card {
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+    overflow: hidden;
+    width: 320px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 2px solid transparent;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-12px) rotate(1deg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), inset 0 4px 8px rgba(255, 255, 255, 0.3);
+    border-color: orangered;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle, rgba(255,255,255,0.5), rgba(0,0,0,0));
+    transition: opacity 0.3s;
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.product-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.3s, filter 0.3s;
+    z-index: 1;
+    position: relative;
+}
+
+.card:hover .product-image {
+    transform: scale(1.08);
+    filter: brightness(1.15);
+}
+
+/* Product name */
+.product-name {
+    font-size: 1.8em;
+    margin: 15px 0;
+    color: #2c3e50;
+    font-weight: bold;
+    z-index: 1;
+    position: relative;
+}
+
+/* Product price */
+.product-price {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #1abc9c;
+    z-index: 1;
+    position: relative;
+}
+
+/* Add to Cart button */
+.card button {
+    background: linear-gradient(145deg, orangered, orangered);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    z-index: 1;
+    position: relative;
+}
+
+.card button:hover {
+    background: linear-gradient(145deg, #2ecc71, #27ae60);
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
