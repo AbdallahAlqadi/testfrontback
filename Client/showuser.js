@@ -10,7 +10,7 @@ var closeCartButton = document.getElementById('close-cart');
 // Fetch product data
 async function getData() {
     try {
-        const response = await fetch('http://127.0.0.1:4000/api/data');
+        const response = await fetch('http://127.0.0.1:4000/api/data'); // تأكد من صحة الرابط
         const information = await response.json();
 
         let content = '';
@@ -21,7 +21,13 @@ async function getData() {
                     <img src="${info.img}" alt="${info.nameproduct}" class="product-image">
                     <h2 class="product-name">${info.nameproduct}</h2>
                     <p class="product-price">$${info.price}</p>
-                    <button class="add-item-btn" data-name="${info.nameproduct}" data-price="${info.price}">إضافة إلى السلة</button>
+                    <div class="quantity-controls">
+                        <button class="decrease-btn" data-name="${info.nameproduct}">-</button>
+                        <span id="count-${info.nameproduct}" class="count-display">0</span>
+                        <button class="increase-btn" data-name="${info.nameproduct}">+</button>
+                    </div>
+                                        <button class="add-item-btn" data-name="${info.nameproduct}" data-price="${info.price}">إضافة إلى السلة</button>
+
                 </div>
             `;
         });
@@ -30,6 +36,14 @@ async function getData() {
 
         document.querySelectorAll('.add-item-btn').forEach(btn => {
             btn.addEventListener('click', addToCart);
+        });
+
+        document.querySelectorAll('.increase-btn').forEach(btn => {
+            btn.addEventListener('click', increaseQuantity);
+        });
+
+        document.querySelectorAll('.decrease-btn').forEach(btn => {
+            btn.addEventListener('click', decreaseQuantity);
         });
     } catch (error) {
         console.error('Error:', error);
@@ -40,21 +54,50 @@ async function getData() {
 // Add to cart
 function addToCart(event) {
     const productName = event.target.getAttribute('data-name');
-    const productPrice = parseFloat(event.target.getAttribute('data-price')).toFixed(2);
+    const quantity = parseInt(document.getElementById(`count-${productName}`).textContent);
 
-    const existingProduct = cart.find(item => item.name === productName);
+    if (quantity > 0) {
+        const productPrice = parseFloat(event.target.getAttribute('data-price')).toFixed(2);
+        const existingProduct = cart.find(item => item.name === productName);
 
-    if (existingProduct) {
-        existingProduct.quantity += 1;
+        if (existingProduct) {
+            existingProduct.quantity += quantity;
+        } else {
+            cart.push({
+                name: productName,
+                price: productPrice,
+                quantity: quantity
+            });
+        }
+
+        updateCart();
+        // Reset quantity display
+        document.getElementById(`count-${productName}`).textContent = '0';
+        document.getElementById(`quantity-${productName}`).textContent = `(x${existingProduct ? existingProduct.quantity : quantity})`;
+        document.getElementById(`quantity-${productName}`).style.display = 'block';
     } else {
-        cart.push({
-            name: productName,
-            price: productPrice,
-            quantity: 1
-        });
+        alert('يرجى تحديد كمية صحيحة.');
     }
+}
 
-    updateCart();
+// Increase product quantity
+function increaseQuantity(event) {
+    const productName = event.target.getAttribute('data-name');
+    const countDisplay = document.getElementById(`count-${productName}`);
+    let currentCount = parseInt(countDisplay.textContent);
+    currentCount += 1;
+    countDisplay.textContent = currentCount;
+}
+
+// Decrease product quantity
+function decreaseQuantity(event) {
+    const productName = event.target.getAttribute('data-name');
+    const countDisplay = document.getElementById(`count-${productName}`);
+    let currentCount = parseInt(countDisplay.textContent);
+    if (currentCount > 0) {
+        currentCount -= 1;
+    }
+    countDisplay.textContent = currentCount;
 }
 
 // Update cart count and display
@@ -68,7 +111,8 @@ cartIcon.addEventListener('click', () => {
     if (cart.length > 0) {
         cart.forEach(item => {
             const listItem = document.createElement('li');
-            listItem.textContent = `${item.name} (x${item.quantity}) - $${item.price} each`;
+            const totalPrice = (item.price * item.quantity).toFixed(2);
+            listItem.textContent = `${item.name} (x${item.quantity}) - $${item.price} each, Total: $${totalPrice}`;
             cartItemsList.appendChild(listItem);
         });
     } else {

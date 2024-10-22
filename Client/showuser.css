@@ -293,3 +293,35 @@ margin-bottom: 50px;
 #close-cart:hover {
     background-color: #218838; /* لون الزر عند التحويم */
 }
+
+
+
+
+.quantity-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.count-display {
+    margin: 0 10px;
+}
+.add-item-btn, .increase-btn, .decrease-btn {
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.add-item-btn:hover, .increase-btn:hover, .decrease-btn:hover {
+    background-color: #e04024;
+}
+
+.add-item-btn:active, .increase-btn:active, .decrease-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
