@@ -96,7 +96,7 @@ a:hover {
 }
 
 .custom-alert button {
-    background-color: #e0a800; /* لون زر أكثر إشراقًا */
+    background-color: #d30000; /* تغيير لون الزر عند التمرير فوقه */
     color: white;
     border: none;
     padding: 10px 15px;
@@ -106,5 +106,5 @@ a:hover {
 }
 
 .custom-alert button:hover {
-    background-color: #d39e00; /* تغيير لون الزر عند التمرير فوقه */
+    background-color: #d30000; /* تغيير لون الزر عند التمرير فوقه */
 }
