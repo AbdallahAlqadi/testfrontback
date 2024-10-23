@@ -113,9 +113,9 @@ body {
 
 #listitem {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto auto auto;
     margin-top: 170px;
-    margin-left: 155px;
+    margin-left: 60px;
     row-gap: 45px;
     margin-bottom: 50px;
 }
