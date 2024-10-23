@@ -278,7 +278,7 @@ body {
     border-bottom: none; /* إزالة الحد السفلي من آخر عنصر */
 }
 
-#checkout-button,
+#checkout-button,#clear-cart-button,
 #close-cart {
     background-color: #007bff; /* لون الزر */
     color: white; /* لون النص */

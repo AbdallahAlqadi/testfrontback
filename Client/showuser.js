@@ -6,6 +6,7 @@ var cartModal = document.getElementById('cart-modal');
 var cartItemsList = document.getElementById('cart-items');
 var checkoutButton = document.getElementById('checkout-button');
 var closeCartButton = document.getElementById('close-cart');
+var clearCartButton = document.getElementById('clear-cart-button');
 
 // Fetch product data
 async function getData() {
@@ -144,6 +145,18 @@ cartIcon.addEventListener('click', () => {
 // Close cart modal
 closeCartButton.addEventListener('click', () => {
     cartModal.style.display = 'none';
+});
+
+// Clear Cart button event
+clearCartButton.addEventListener('click', () => {
+    if (cart.length > 0) {
+        cart = []; // Empty the cart array
+        updateCart(); // Update the cart count
+        cartItemsList.innerHTML = '<li>سلتك فارغة</li>'; // Display empty cart message
+        showAlert('تم إفراغ السلة.');
+    } else {
+        showAlert('سلتك فارغة بالفعل.');
+    }
 });
 
 // Checkout button event
