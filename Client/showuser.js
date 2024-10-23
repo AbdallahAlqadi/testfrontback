@@ -109,8 +109,11 @@ function decreaseQuantity(event) {
     let currentCount = parseInt(countDisplay.textContent);
     if (currentCount > 0) {
         currentCount -= 1;
+        countDisplay.textContent = currentCount;
+    } else {
+        // Show alert when quantity is already 0
+        showAlert('لا يمكنك تقليل الكمية لأن الكمية الحالية هي صفر.');
     }
-    countDisplay.textContent = currentCount;
 }
 
 // Update cart count and display
