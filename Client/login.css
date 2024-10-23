@@ -81,30 +81,32 @@ a:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.9); /* تغيير الخلفية إلى لون أبيض شفاف */
-    color: #333; /* لون نص أغمق لتحسين القراءة */
-    border: 1px solid #e0a800; /* تغيير لون الحدود */
-    padding: 20px;
-    border-radius: 8px; /* زيادة انحناء الزوايا */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* إضافة ظل لجعلها بارزة */
+    background-color: rgba(255, 255, 255, 0.95); /* جعل الخلفية أكثر شفافية قليلاً */
+    color: #333; /* لون النص لتحسين القراءة */
+    border: 2px solid #e0a800; /* زيادة سمك الحدود لجعلها بارزة أكثر */
+    padding: 25px; /* توسيع المساحة الداخلية */
+    border-radius: 12px; /* زيادة انحناء الزوايا لإضفاء مظهر أنعم */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* تحسين الظل ليصبح أكثر وضوحاً */
     z-index: 1000;
-    transition: transform 0.3s ease; /* إضافة تأثير عند ظهور التنبيه */
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* إضافة تأثير مزدوج للانتقالات */
 }
 
 .custom-alert.show {
-    transform: translate(-50%, -50%) scale(1.05); /* تأثير عند ظهور التنبيه */
+    transform: translate(-50%, -50%) scale(1.1); /* تكبير التأثير عند الظهور */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4); /* زيادة تأثير الظل عند الظهور */
 }
 
 .custom-alert button {
-    background-color: #d30000; /* تغيير لون الزر عند التمرير فوقه */
+    background-color: #d30000; /* الحفاظ على لون الزر الأحمر */
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 12px 18px; /* توسيع حجم الزر */
+    border-radius: 8px; /* زيادة انحناء الزر */
     cursor: pointer;
-    transition: background-color 0.3s; /* إضافة تأثير لتغيير لون الزر */
+    transition: background-color 0.3s, transform 0.3s; /* إضافة تأثيرين عند التمرير */
 }
 
 .custom-alert button:hover {
-    background-color: #d30000; /* تغيير لون الزر عند التمرير فوقه */
+    background-color: #b30000; /* جعل لون الزر أغمق قليلاً عند التمرير */
+    transform: scale(1.1); /* تكبير الزر قليلاً عند التمرير */
 }
