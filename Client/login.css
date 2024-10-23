@@ -74,3 +74,37 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+
+.custom-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9); /* تغيير الخلفية إلى لون أبيض شفاف */
+    color: #333; /* لون نص أغمق لتحسين القراءة */
+    border: 1px solid #e0a800; /* تغيير لون الحدود */
+    padding: 20px;
+    border-radius: 8px; /* زيادة انحناء الزوايا */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* إضافة ظل لجعلها بارزة */
+    z-index: 1000;
+    transition: transform 0.3s ease; /* إضافة تأثير عند ظهور التنبيه */
+}
+
+.custom-alert.show {
+    transform: translate(-50%, -50%) scale(1.05); /* تأثير عند ظهور التنبيه */
+}
+
+.custom-alert button {
+    background-color: #e0a800; /* لون زر أكثر إشراقًا */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* إضافة تأثير لتغيير لون الزر */
+}
+
+.custom-alert button:hover {
+    background-color: #d39e00; /* تغيير لون الزر عند التمرير فوقه */
+}

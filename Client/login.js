@@ -22,10 +22,24 @@ form.addEventListener('submit', async function(e) {
 
         // إذا لم يتم العثور على المستخدم، عرض رسالة الخطأ
         if (!isValidUser) {
-            alert("username or password is incorrect");
+            showAlert("username or password is incorrect")
         }
 
     } catch (error) {
         console.error('Error:', error);
     }
 });
+
+
+function showAlert(message) {
+    const alertMessage = document.getElementById('alert-message');
+    const customAlert = document.getElementById('custom-alert');
+
+    alertMessage.textContent = message;
+    customAlert.style.display = 'block';
+
+    const closeButton = document.getElementById('alert-close');
+    closeButton.onclick = function() {
+        customAlert.style.display = 'none';
+    };
+}
