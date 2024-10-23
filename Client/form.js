@@ -72,8 +72,8 @@ async function getData() {
                     <img src="${info.img}" alt="${info.nameproduct}" class="product-image">
                     <h2 class="product-name">${info.nameproduct}</h2>
                     <p class="product-price">$${info.price}</p>
-                    <button id="delete" onclick="deleteData('${info._id}')">Delete</button>
-                                        <button id="delete" >Update</button>
+                    <button style="width:170px;margin-left:70px" id="delete" onclick="deleteData('${info._id}')">Delete</button>
+                                        <button style="width:170px;margin-left:70px" id="delete" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >Update</button>
 
                 </div>
             `;
