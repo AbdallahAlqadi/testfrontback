@@ -1,19 +1,31 @@
 const Order = require('../models/order');
 
 exports.createOrder = async (req, res) => {
-    const { name, price, count,total } = req.body;
+    const orders = req.body; // استقبل قائمة من الطلبات
 
     try {
-        // Create a new product object
-        const newOrder = { name, price, count,total };
-        // Log the new product data
+        // تحقق من أن البيانات المستلمة هي مصفوفة
+        if (!Array.isArray(orders)) {
+            return res.status(400).json({ message: 'Invalid input: expected an array of orders' });
+        }
 
-        // Save the product to the database
-        const dborder = await Order.create(newOrder);
+        // استخدم Promise.all لمعالجة الطلبات في وقت واحد
+        const createdOrders = await Promise.all(
+            orders.map(async (order) => {
+                const { name, price, count, total } = order;
+                // تحقق من أن الحقول المطلوبة موجودة
+                if (!name || !price || !count || !total) {
+                    throw new Error('Order validation failed: name, price, count, and total are required.');
+                }
 
-        res.status(201).json({ message: `Data created successfully`, data: dborder });
+                // إنشاء كائن الطلب الجديد
+                return await Order.create({ name, price, count, total });
+            })
+        );
+
+        res.status(201).json({ message: 'Orders created successfully', data: createdOrders });
     } catch (error) {
-        console.error('Error creating product:', error);
+        console.error('Error creating orders:', error);
         res.status(400).json({ message: error.message });
     }
 };
