@@ -84,12 +84,12 @@ async function getData() {
                     <img src="${info.img}" alt="${info.nameproduct}" class="product-image">
                     <h2 class="product-name">${info.nameproduct}</h2>
                     <p class="product-price">$${info.price}</p>
-                    <button style="width:170px;margin-left:70px" id="delete" onclick="deleteData('${info._id}')">Delete</button>
+                    <button style="width:170px;margin-left:70px" id="delete" onclick="deleteData('${info._id}')">حذف</button>
                     <button onclick="returnData('${info._id}', '${info.nameproduct}', '${info.price}', '${info.img}')" 
                             style="width:170px;margin-left:70px" 
                             class="btn btn-primary" 
                             data-bs-toggle="modal" 
-                            data-bs-target="#exampleModal">Update</button>
+                            data-bs-target="#exampleModal">تعديل</button>
                 </div>
             `;
             products.innerHTML += productCard;
