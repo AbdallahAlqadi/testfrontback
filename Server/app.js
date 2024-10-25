@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const dataRoutes = require('./routes/dataRoutes');
 const signupRoutes = require('./routes/signupRoutes');
-
+const orderRoutes = require('./routes/orderRoutes');
 
 
 dotenv.config();
@@ -16,6 +16,7 @@ app.use(cors());
 app.use('/api',dataRoutes);
 
 app.use('/api',signupRoutes);
+app.use('/api',orderRoutes);
 
 
 module.exports = app;

@@ -12,6 +12,7 @@ var clearCartButton = document.getElementById('clear-cart-button');
 async function getData() {
     try {
         const response = await fetch('http://127.0.0.1:4000/api/data');
+        if (!response.ok) throw new Error('Network response was not ok');
         const information = await response.json();
 
         let content = '';
@@ -82,12 +83,11 @@ function addToCart(event) {
                 name: productName,
                 price: productPrice,
                 quantity: quantity,
-                img: productImage // Add image URL here
+                img: productImage
             });
         }
 
         updateCart();
-        // Reset quantity display
         document.getElementById(`count-${productName}`).textContent = '0';
     } else {
         showAlert('يرجى تحديد كمية صحيحة.');
@@ -112,7 +112,6 @@ function decreaseQuantity(event) {
         currentCount -= 1;
         countDisplay.textContent = currentCount;
     } else {
-        // Show alert when quantity is already 0
         showAlert('لا يمكنك تقليل الكمية لأن الكمية الحالية هي صفر.');
     }
 }
@@ -135,10 +134,9 @@ cartIcon.addEventListener('click', () => {
             cartItemsList.appendChild(listItem);
         });
     } else {
-        cartItemsList.innerHTML = '<li>سلتك فارغة</li>'; // Message if the cart is empty
+        cartItemsList.innerHTML = '<li>سلتك فارغة</li>';
     }
 
-    // Show the cart modal
     cartModal.style.display = 'block';
 });
 
@@ -150,9 +148,9 @@ closeCartButton.addEventListener('click', () => {
 // Clear Cart button event
 clearCartButton.addEventListener('click', () => {
     if (cart.length > 0) {
-        cart = []; // Empty the cart array
-        updateCart(); // Update the cart count
-        cartItemsList.innerHTML = '<li>سلتك فارغة</li>'; // Display empty cart message
+        cart = [];
+        updateCart();
+        cartItemsList.innerHTML = '<li>سلتك فارغة</li>';
         showAlert('تم إفراغ السلة.');
     } else {
         showAlert('سلتك فارغة بالفعل.');
@@ -160,24 +158,45 @@ clearCartButton.addEventListener('click', () => {
 });
 
 // Checkout button event
-checkoutButton.addEventListener('click', () => {
+checkoutButton.addEventListener('click', async () => {
     if (cart.length > 0) {
-        fetch('http://127.0.0.1:4000/api/checkout', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(cart)
-        }).then(response => {
-            if (response.ok) {
-                alert('تم تقديم الطلب بنجاح!');
-                cart = [];
-                updateCart();
-                cartModal.style.display = 'none';
-            } else {
-                showAlert('فشل تقديم الطلب');
+        const orderData = cart.map(item => ({
+            name: item.name,
+            price: parseFloat(item.price), // Ensure price is a float
+            count: item.quantity,
+            total: (item.price * item.quantity).toFixed(2)
+        }));
+
+        // Debugging: log the order data to verify its structure
+        console.log('Order Data:', orderData);
+        
+        try {
+            const response = await fetch('http://127.0.0.1:4000/api/order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(orderData)
+            });
+
+            // Check if the response is OK
+            if (!response.ok) {
+                const errorMessage = await response.text(); // Get response text for more info
+                showAlert(`فشل تقديم الطلب: ${errorMessage}`);
+                return;
             }
-        }).catch(error => console.error('Error:', error));
+
+            const responseData = await response.json(); // Assuming your server returns JSON response
+            console.log('Response Data:', responseData); // Log the response
+
+            alert('تم تقديم الطلب بنجاح!');
+            cart = []; // Clear the cart
+            updateCart();
+            cartModal.style.display = 'none';
+        } catch (error) {
+            console.error('Error during checkout:', error);
+            showAlert('حدث خطأ أثناء تقديم الطلب. يرجى التحقق من اتصالك بالإنترنت.');
+        }
     } else {
         showAlert('سلتك فارغة. يرجى إضافة عناصر قبل تقديم الطلب.');
     }
