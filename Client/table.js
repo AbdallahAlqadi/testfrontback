@@ -21,6 +21,8 @@ async function getData() {
                 <td>${order.price}</td>
                 <td>${order.count}</td>
                 <td>${order.total}</td>
+                                <td>${order.createdAt}</td>
+
             </tr>
         `).join(''); // دمج مصفوفة الصفوف في سلسلة واحدة
 
