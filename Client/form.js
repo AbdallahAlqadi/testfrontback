@@ -3,9 +3,9 @@ const form = document.getElementById('productForm');
 form.addEventListener('submit', async function (e) {
     e.preventDefault(); 
 
-    var nameproduct = document.getElementById('productName').value.trim();
-    var price = document.getElementById('productPrice').value.trim();
-    var img = document.getElementById('productImage').files[0];
+    const nameproduct = document.getElementById('productName').value.trim();
+    const price = document.getElementById('productPrice').value.trim();
+    const img = document.getElementById('productImage').files[0];
 
     // تحقق من صحة المدخلات
     if (!nameproduct || !price || !img) {
@@ -14,27 +14,40 @@ form.addEventListener('submit', async function (e) {
     }
 
     // تحقق من حجم الصورة
-    if (img.size > 30 * 1024 * 1024) {
-        alert('حجم الصورة يجب أن يكون أقل من 30 ميجابايت');
+    if (img.size > 50 * 1024 * 1024) {
+        alert('حجم الصورة يجب أن يكون أقل من 50 ميجابايت');
+        return;
+    }
+
+    // تحقق من نوع الصورة (اختياري)
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    if (!allowedTypes.includes(img.type)) {
+        alert('يرجى تحميل صورة بصيغة JPEG أو PNG أو GIF فقط');
+        return;
+    }
+
+    // تحقق من أن السعر هو عدد
+    if (isNaN(price) || price <= 0) {
+        alert('يرجى إدخال سعر صحيح');
         return;
     }
 
     const reader = new FileReader();
-    reader.onload = function() {
-        var imgData = reader.result;
-        PostREN(nameproduct, price, imgData);
-    }
-    
+    reader.onload = async function() {
+        const imgData = reader.result;
+        await PostREN(nameproduct, price, imgData);
+        alert('تم إنشاء المنتج بنجاح');
+    };
+
     reader.readAsDataURL(img);
-    alert('تم إنشاء المنتج بنجاح');
 });
 
 async function PostREN(nameproduct, price, imgData) {
-    const data = { nameproduct: nameproduct, price: price, img: imgData };
+    const data = { nameproduct, price, img: imgData };
 
     try {
         const response = await fetch('http://127.0.0.1:4000/api/data', {
-            method: 'POST', 
+            method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
         });
@@ -54,12 +67,14 @@ async function PostREN(nameproduct, price, imgData) {
     }
 }
 
+
 // Function to fetch data from the backend
 async function getData() {
     try {
         const response = await fetch('http://127.0.0.1:4000/api/data');
+        if (!response.ok) throw new Error(`Error: ${response.status}`);
+        
         const data = await response.json();
-
         const products = document.getElementById('products');
         products.innerHTML = '';
 
@@ -81,6 +96,7 @@ async function getData() {
         });
     } catch (error) {
         console.error('Error:', error);
+        alert('حدث خطأ أثناء جلب البيانات: ' + error.message);
     }
 }
 
@@ -93,21 +109,21 @@ async function deleteData(id) {
 
         if (response.ok) {
             getData();
-            alert('Product deleted successfully');
+            alert('تم حذف المنتج بنجاح');
         } else {
-            console.error('Failed to delete the product');
-            alert('Failed to delete the product');
+            console.error('فشل في حذف المنتج');
+            alert('فشل في حذف المنتج');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('An error occurred while deleting the product');
+        alert('حدث خطأ أثناء حذف المنتج');
     }
 }
 
 // Call getData when the page loads
 getData();
 
-var productId;
+let productId;
 async function returnData(id, name, price, img) {
     productId = id;
     document.getElementById('updatename').value = name;
@@ -120,10 +136,10 @@ async function returnData(id, name, price, img) {
 document.getElementById('change').addEventListener('click', async function(e) {
     e.preventDefault();
 
-    var nameproduct = document.getElementById('updatename').value.trim();
-    var price = document.getElementById('updateprice').value.trim();
-    var imgFile = document.getElementById('updateimg').files[0];
-    
+    const nameproduct = document.getElementById('updatename').value.trim();
+    const price = document.getElementById('updateprice').value.trim();
+    const imgFile = document.getElementById('updateimg').files[0];
+
     if (!nameproduct || !price || !imgFile) {
         alert('يرجى ملء جميع الحقول');
         return;
@@ -134,8 +150,8 @@ document.getElementById('change').addEventListener('click', async function(e) {
         const imgData = reader.result;
 
         const data = { 
-            nameproduct: nameproduct, 
-            price: price, 
+            nameproduct, 
+            price, 
             img: imgData
         };
 
@@ -151,18 +167,19 @@ document.getElementById('change').addEventListener('click', async function(e) {
                 throw new Error(`Error: ${response.status} - ${errorDetails.message || 'Unknown error'}`);
             }
 
-            alert('Update Success');
+            alert('تم التحديث بنجاح');
             getData();
 
-            // اغلاق نافذة المودال بعد نجاح التحديث
+            // إغلاق نافذة المودال بعد نجاح التحديث
             const modal = document.getElementById('exampleModal');
-            const bootstrapModal = bootstrap.Modal.getInstance(modal);
+            const bootstrapModal = bootstrap.Modal.getInstance(modal); // استخدام getInstance بدلاً من new Modal
             bootstrapModal.hide();
 
         } catch (error) {
             console.error('Error:', error.message);
+            alert('حدث خطأ أثناء التحديث: ' + error.message);
         }
     };
-    
+
     reader.readAsDataURL(imgFile);
-});
+});    

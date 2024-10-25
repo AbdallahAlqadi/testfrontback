@@ -11,6 +11,40 @@ body {
     min-height: 100vh;
 }
 
+.page-title {
+    font-size: 42px;                                /* زيادة حجم الخط */
+    color: #1a252f;                                 /* لون أغمق للنص */
+    background: linear-gradient(45deg, #e66b19, #d35400); /* لون متدرج */
+    -webkit-background-clip: text;                  /* إضافة لون متدرج على النص */
+    -webkit-text-fill-color: transparent;           /* شفافية اللون النصي */
+    text-align: center;                             /* توسيط النص */
+    font-weight: 900;                               /* خط أسمك */
+    text-transform: uppercase;                      /* تحويل النص إلى أحرف كبيرة */
+    letter-spacing: 3px;                            /* زيادة التباعد بين الأحرف */
+    border-bottom: 4px solid #e66b19;               /* خط سفلي أكثر سماكة */
+    padding-bottom: 15px;                           /* مسافة أكبر أسفل العنوان */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);      /* ظل أقوى */
+    font-family: 'Arial Black', sans-serif;         /* خط قوي للنص */
+    transition: color 0.3s ease, transform 0.3s ease; /* تأثير انسيابي */
+    margin-top: 190px;
+    /* تعديلات جديدة */
+    line-height: 1.2;                               /* تحسين المسافة بين الأسطر */
+    opacity: 0.9;                                   /* تخفيف الشفافية لتأثير مرئي أكثر */
+    cursor: pointer;                                /* تغيير المؤشر عند التمرير */
+    user-select: none;                              /* منع تحديد النص */
+}
+
+.page-title:hover {
+    color: #d35400;                                 /* لون مميز عند التمرير */
+    transform: scale(1.05);                         /* تكبير النص عند التمرير */
+    text-shadow: 0 5px 15px rgba(230, 107, 25, 0.7); /* إضافة ظل ملون عند التمرير */
+}
+
+
+
+
+
+
 .content {
     padding-left: 140px;
     margin-top: 50px;
