@@ -21,11 +21,28 @@ exports.createOrder = async (req, res) => {
                 // إنشاء كائن الطلب الجديد
                 return await Order.create({ name, price, count, total });
             })
+
         );
 
         res.status(201).json({ message: 'Orders created successfully', data: createdOrders });
     } catch (error) {
         console.error('Error creating orders:', error);
         res.status(400).json({ message: error.message });
+    }
+};
+
+
+
+
+
+
+
+exports.getOrder = async (req, res) => {
+    try {
+        const order = await Order.find();
+        console.log(order);  // يظهر البيانات في التيرمينال (في السيرفر)
+        res.json(order);  // يرسل البيانات إلى المتصفح (العميل)
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
 };

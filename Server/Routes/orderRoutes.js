@@ -3,8 +3,9 @@ const cors=require('cors');
 const routes=express.Router();
 require('dotenv').config();
 
-const {createOrder}=require('../controllers/ordercontroller'); 
+const {createOrder,getOrder}=require('../controllers/ordercontroller'); 
  routes.post('/order',createOrder);
+ routes.get('/order',getOrder);
 
 
 
