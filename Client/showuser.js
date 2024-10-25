@@ -157,6 +157,8 @@ clearCartButton.addEventListener('click', () => {
     }
 });
 
+
+
 // Checkout button event
 checkoutButton.addEventListener('click', async () => {
     if (cart.length > 0) {
