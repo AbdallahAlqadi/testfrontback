@@ -9,6 +9,12 @@ exports.createOrder = async (req, res) => {
             return res.status(400).json({ message: 'Invalid input: expected an array of orders' });
         }
 
+        // مصفوفات لتخزين القيم
+        const names = [];
+        const prices = [];
+        const counts = [];
+        const totals = [];
+
         // استخدم Promise.all لمعالجة الطلبات في وقت واحد
         const createdOrders = await Promise.all(
             orders.map(async (order) => {
@@ -18,13 +24,25 @@ exports.createOrder = async (req, res) => {
                     throw new Error('Order validation failed: name, price, count, and total are required.');
                 }
 
+                // أضف القيم إلى المصفوفات
+                names.push(name);
+                prices.push(price);
+                counts.push(count);
+                totals.push(total);
+
                 // إنشاء كائن الطلب الجديد
                 return await Order.create({ name, price, count, total });
             })
-
         );
 
-        res.status(201).json({ message: 'Orders created successfully', data: createdOrders });
+        res.status(201).json({
+            message: 'Orders created successfully',
+            data: createdOrders,
+            names, // الأسماء
+            prices, // الأسعار
+            counts, // العدد
+            totals // الإجماليات
+        });
     } catch (error) {
         console.error('Error creating orders:', error);
         res.status(400).json({ message: error.message });
