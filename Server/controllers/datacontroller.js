@@ -62,3 +62,27 @@ exports.deleteData = async (req, res) => {
     }
   };
   
+
+
+
+
+  // put
+
+  exports.Updateproduct=async(req,res)=>{
+    //مكس بين get  و post
+
+    try{
+
+const id=req.params.id;
+//لازم  ابعت القيم لجديده يلي بدي اعدلها
+const body=req.body;
+console.log(body)
+const updateproduct=await Data.findByIdAndUpdate(id,body,{new:true})
+res.status(200).json(updateproduct)
+    }
+
+    catch(error){
+        res.status(500).json({error:error.message});
+
+    }
+}

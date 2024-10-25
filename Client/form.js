@@ -9,31 +9,28 @@ form.addEventListener('submit', async function (e) {
 
     // تحقق من صحة المدخلات
     if (!nameproduct || !price || !img) {
-        alert('يرجى ملء جميع الحقول'); // "Please fill all fields"
+        alert('يرجى ملء جميع الحقول');
         return;
     }
 
     // تحقق من حجم الصورة
-    if (img.size > 30 * 1024 * 1024) { // مثال: 5 ميجابايت
-        alert('حجم الصورة يجب أن يكون أقل من 30 ميجابايت'); // "Image size must be less than 5 MB"
+    if (img.size > 30 * 1024 * 1024) {
+        alert('حجم الصورة يجب أن يكون أقل من 30 ميجابايت');
         return;
     }
 
     const reader = new FileReader();
     reader.onload = function() {
-        var imgData = reader.result; // Base64 image data
-        PostREN(nameproduct, price, imgData); // Pass imgData instead of img
+        var imgData = reader.result;
+        PostREN(nameproduct, price, imgData);
     }
     
     reader.readAsDataURL(img);
-    alert('Done creat  product');
-
+    alert('تم إنشاء المنتج بنجاح');
 });
 
 async function PostREN(nameproduct, price, imgData) {
-    const data = { nameproduct: nameproduct, price: price, img: imgData }; // Use imgData here
-    
-    console.log('Data being sent:', data); // Log the data to be sent
+    const data = { nameproduct: nameproduct, price: price, img: imgData };
 
     try {
         const response = await fetch('http://127.0.0.1:4000/api/data', {
@@ -49,11 +46,11 @@ async function PostREN(nameproduct, price, imgData) {
 
         // Reset the form fields
         form.reset(); 
-        getData(); // Refresh data after successful post
+        getData(); 
 
     } catch (error) {
         console.error('Error:', error);
-        alert('حدث خطأ أثناء إرسال البيانات: ' + error.message); // "An error occurred while sending data"
+        alert('حدث خطأ أثناء إرسال البيانات: ' + error.message);
     }
 }
 
@@ -64,7 +61,7 @@ async function getData() {
         const data = await response.json();
 
         const products = document.getElementById('products');
-        products.innerHTML = ''; // Clear previous content
+        products.innerHTML = '';
 
         data.forEach(info => {
             const productCard = `
@@ -73,8 +70,11 @@ async function getData() {
                     <h2 class="product-name">${info.nameproduct}</h2>
                     <p class="product-price">$${info.price}</p>
                     <button style="width:170px;margin-left:70px" id="delete" onclick="deleteData('${info._id}')">Delete</button>
-                                        <button style="width:170px;margin-left:70px" id="delete" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >Update</button>
-
+                    <button onclick="returnData('${info._id}', '${info.nameproduct}', '${info.price}', '${info.img}')" 
+                            style="width:170px;margin-left:70px" 
+                            class="btn btn-primary" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#exampleModal">Update</button>
                 </div>
             `;
             products.innerHTML += productCard;
@@ -92,38 +92,77 @@ async function deleteData(id) {
         });
 
         if (response.ok) {
-            // Refresh the product list after deletion
             getData();
-            alert('Product deleted successfully'); // Correct alert function
+            alert('Product deleted successfully');
         } else {
             console.error('Failed to delete the product');
-            alert('Failed to delete the product'); // Alert for deletion failure
+            alert('Failed to delete the product');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('An error occurred while deleting the product'); // Alert for unexpected errors
+        alert('An error occurred while deleting the product');
     }
 }
 
 // Call getData when the page loads
 getData();
 
-async function deleteData(id) {
-    const url = `http://127.0.0.1:4000/api/data/${id}`; // استخدم const للـ URL
-    try {
-        const response = await fetch(url, {
-            method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' }
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(`Error ${response.status}: ${errorData.message || 'Deletion failed'}`);
-        }
-
-        getData(); // تحديث البيانات بعد الحذف
-
-    } catch (error) {
-        alert(`حدث خطأ أثناء الحذف: ${error.message} (ID: ${id})`); // بناء رسالة الخطأ بشكل صحيح
-    }
+var productId;
+async function returnData(id, name, price, img) {
+    productId = id;
+    document.getElementById('updatename').value = name;
+    document.getElementById('updateprice').value = price;
+    
+    // Set img preview
+    document.getElementById('updateimgPreview').src = img;
 }
+
+document.getElementById('change').addEventListener('click', async function(e) {
+    e.preventDefault();
+
+    var nameproduct = document.getElementById('updatename').value.trim();
+    var price = document.getElementById('updateprice').value.trim();
+    var imgFile = document.getElementById('updateimg').files[0];
+    
+    if (!nameproduct || !price || !imgFile) {
+        alert('يرجى ملء جميع الحقول');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = async function() {
+        const imgData = reader.result;
+
+        const data = { 
+            nameproduct: nameproduct, 
+            price: price, 
+            img: imgData
+        };
+
+        try {
+            const response = await fetch(`http://127.0.0.1:4000/api/data/${productId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            if (!response.ok) {
+                const errorDetails = await response.json();
+                throw new Error(`Error: ${response.status} - ${errorDetails.message || 'Unknown error'}`);
+            }
+
+            alert('Update Success');
+            getData();
+
+            // اغلاق نافذة المودال بعد نجاح التحديث
+            const modal = document.getElementById('exampleModal');
+            const bootstrapModal = bootstrap.Modal.getInstance(modal);
+            bootstrapModal.hide();
+
+        } catch (error) {
+            console.error('Error:', error.message);
+        }
+    };
+    
+    reader.readAsDataURL(imgFile);
+});
