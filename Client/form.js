@@ -9,26 +9,46 @@ form.addEventListener('submit', async function (e) {
 
     // تحقق من صحة المدخلات
     if (!nameproduct || !price || !img) {
-        alert('يرجى ملء جميع الحقول');
+        Swal.fire({
+            icon: 'warning',
+            title: 'تحذير',
+            text: 'يرجى ملء جميع الحقول',
+            confirmButtonText: 'حسناً'
+        });
         return;
     }
 
     // تحقق من حجم الصورة
     if (img.size > 50 * 1024 * 1024) {
-        alert('حجم الصورة يجب أن يكون أقل من 50 ميجابايت');
+        Swal.fire({
+            icon: 'error',
+            title: 'خطأ',
+            text: 'حجم الصورة يجب أن يكون أقل من 50 ميجابايت',
+            confirmButtonText: 'حسناً'
+        });
         return;
     }
 
     // تحقق من نوع الصورة (اختياري)
     const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
     if (!allowedTypes.includes(img.type)) {
-        alert('يرجى تحميل صورة بصيغة JPEG أو PNG أو GIF فقط');
+        Swal.fire({
+            icon: 'error',
+            title: 'خطأ',
+            text: 'يرجى تحميل صورة بصيغة JPEG أو PNG أو GIF فقط',
+            confirmButtonText: 'حسناً'
+        });
         return;
     }
 
     // تحقق من أن السعر هو عدد
     if (isNaN(price) || price <= 0) {
-        alert('يرجى إدخال سعر صحيح');
+        Swal.fire({
+            icon: 'error',
+            title: 'خطأ',
+            text: 'يرجى إدخال سعر صحيح',
+            confirmButtonText: 'حسناً'
+        });
         return;
     }
 
@@ -36,7 +56,12 @@ form.addEventListener('submit', async function (e) {
     reader.onload = async function() {
         const imgData = reader.result;
         await PostREN(nameproduct, price, imgData);
-        alert('تم إنشاء المنتج بنجاح');
+        Swal.fire({
+            icon: 'success',
+            title: 'نجاح',
+            text: 'تم إنشاء المنتج بنجاح',
+            confirmButtonText: 'حسناً'
+        });
     };
 
     reader.readAsDataURL(img);
@@ -63,10 +88,14 @@ async function PostREN(nameproduct, price, imgData) {
 
     } catch (error) {
         console.error('Error:', error);
-        alert('حدث خطأ أثناء إرسال البيانات: ' + error.message);
+        Swal.fire({
+            icon: 'error',
+            title: 'خطأ',
+            text: 'حدث خطأ أثناء إرسال البيانات: ' + error.message,
+            confirmButtonText: 'حسناً'
+        });
     }
 }
-
 
 // Function to fetch data from the backend
 async function getData() {
@@ -96,7 +125,12 @@ async function getData() {
         });
     } catch (error) {
         console.error('Error:', error);
-        alert('حدث خطأ أثناء جلب البيانات: ' + error.message);
+        Swal.fire({
+            icon: 'error',
+            title: 'خطأ',
+            text: 'حدث خطأ أثناء جلب البيانات: ' + error.message,
+            confirmButtonText: 'حسناً'
+        });
     }
 }
 
@@ -109,14 +143,29 @@ async function deleteData(id) {
 
         if (response.ok) {
             getData();
-            alert('تم حذف المنتج بنجاح');
+            Swal.fire({
+                icon: 'success',
+                title: 'نجاح',
+                text: 'تم حذف المنتج بنجاح',
+                confirmButtonText: 'حسناً'
+            });
         } else {
             console.error('فشل في حذف المنتج');
-            alert('فشل في حذف المنتج');
+            Swal.fire({
+                icon: 'error',
+                title: 'خطأ',
+                text: 'فشل في حذف المنتج',
+                confirmButtonText: 'حسناً'
+            });
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('حدث خطأ أثناء حذف المنتج');
+        Swal.fire({
+            icon: 'error',
+            title: 'خطأ',
+            text: 'حدث خطأ أثناء حذف المنتج',
+            confirmButtonText: 'حسناً'
+        });
     }
 }
 
@@ -141,7 +190,12 @@ document.getElementById('change').addEventListener('click', async function(e) {
     const imgFile = document.getElementById('updateimg').files[0];
 
     if (!nameproduct || !price || !imgFile) {
-        alert('يرجى ملء جميع الحقول');
+        Swal.fire({
+            icon: 'warning',
+            title: 'تحذير',
+            text: 'يرجى ملء جميع الحقول',
+            confirmButtonText: 'حسناً'
+        });
         return;
     }
 
@@ -167,7 +221,12 @@ document.getElementById('change').addEventListener('click', async function(e) {
                 throw new Error(`Error: ${response.status} - ${errorDetails.message || 'Unknown error'}`);
             }
 
-            alert('تم التحديث بنجاح');
+            Swal.fire({
+                icon: 'success',
+                title: 'نجاح',
+                text: 'تم التحديث بنجاح',
+                confirmButtonText: 'حسناً'
+            });
             getData();
 
             // إغلاق نافذة المودال بعد نجاح التحديث
@@ -177,9 +236,14 @@ document.getElementById('change').addEventListener('click', async function(e) {
 
         } catch (error) {
             console.error('Error:', error.message);
-            alert('حدث خطأ أثناء التحديث: ' + error.message);
+            Swal.fire({
+                icon: 'error',
+                title: 'خطأ',
+                text: 'حدث خطأ أثناء التحديث: ' + error.message,
+                confirmButtonText: 'حسناً'
+            });
         }
     };
 
     reader.readAsDataURL(imgFile);
-});    
+});
