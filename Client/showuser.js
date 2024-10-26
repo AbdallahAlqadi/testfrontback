@@ -52,18 +52,14 @@ async function getData() {
     }
 }
 
-// Show custom alert message
+// Show custom alert message using SweetAlert2
 function showAlert(message) {
-    const alertMessage = document.getElementById('alert-message');
-    const customAlert = document.getElementById('custom-alert');
-
-    alertMessage.textContent = message;
-    customAlert.style.display = 'block';
-
-    const closeButton = document.getElementById('alert-close');
-    closeButton.onclick = function() {
-        customAlert.style.display = 'none';
-    };
+    Swal.fire({
+        title: 'تنبيه',
+        text: message,
+        icon: 'info',
+        confirmButtonText: 'موافق'
+    });
 }
 
 // Add to cart
@@ -157,19 +153,16 @@ clearCartButton.addEventListener('click', () => {
     }
 });
 
-
-
 // Checkout button event
 checkoutButton.addEventListener('click', async () => {
     if (cart.length > 0) {
         const orderData = cart.map(item => ({
             name: item.name,
-            price: parseFloat(item.price), // Ensure price is a float
+            price: parseFloat(item.price),
             count: item.quantity,
             total: (item.price * item.quantity).toFixed(2)
         }));
 
-        // Debugging: log the order data to verify its structure
         console.log('Order Data:', orderData);
         
         try {
@@ -181,26 +174,45 @@ checkoutButton.addEventListener('click', async () => {
                 body: JSON.stringify(orderData)
             });
 
-            // Check if the response is OK
             if (!response.ok) {
-                const errorMessage = await response.text(); // Get response text for more info
-                showAlert(`فشل تقديم الطلب: ${errorMessage}`);
+                const errorMessage = await response.text();
+                Swal.fire({
+                    title: 'خطأ',
+                    text: `فشل تقديم الطلب: ${errorMessage}`,
+                    icon: 'error',
+                    confirmButtonText: 'موافق'
+                });
                 return;
             }
 
-            const responseData = await response.json(); // Assuming your server returns JSON response
-            console.log('Response Data:', responseData); // Log the response
+            const responseData = await response.json();
+            console.log('Response Data:', responseData);
 
-            alert('تم تقديم الطلب بنجاح!');
-            cart = []; // Clear the cart
+            Swal.fire({
+                title: 'نجاح',
+                text: 'تم تقديم الطلب بنجاح!',
+                icon: 'success',
+                confirmButtonText: 'موافق'
+            });
+            cart = [];
             updateCart();
             cartModal.style.display = 'none';
         } catch (error) {
             console.error('Error during checkout:', error);
-            showAlert('حدث خطأ أثناء تقديم الطلب. يرجى التحقق من اتصالك بالإنترنت.');
+            Swal.fire({
+                title: 'خطأ',
+                text: 'حدث خطأ أثناء تقديم الطلب. يرجى التحقق من اتصالك بالإنترنت.',
+                icon: 'error',
+                confirmButtonText: 'موافق'
+            });
         }
     } else {
-        showAlert('سلتك فارغة. يرجى إضافة عناصر قبل تقديم الطلب.');
+        Swal.fire({
+            title: 'تنبيه',
+            text: 'سلتك فارغة. يرجى إضافة عناصر قبل تقديم الطلب.',
+            icon: 'warning',
+            confirmButtonText: 'موافق'
+        });
     }
 });
 
