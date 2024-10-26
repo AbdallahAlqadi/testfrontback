@@ -13,16 +13,16 @@ form.addEventListener('submit', async function(e) {
         let isValidUser = false; // متغير لتتبع حالة المستخدم
 
         for (var i = 0; i < data.length; i++) {
-            if (users == data[i].name && password == data[i].password) {
+            if (users === data[i].name && password === data[i].password) {
                 isValidUser = true; // إذا تم العثور على المستخدم
                 window.location.href = "showuser.html";     
                 break; // الخروج من الحلقة إذا تم العثور على المستخدم
             }
         }
 
-        // إذا لم يتم العثور على المستخدم، عرض رسالة الخطأ
+        // إذا لم يتم العثور على المستخدم، عرض رسالة الخطأ باستخدام SweetAlert2
         if (!isValidUser) {
-            showAlert("username or password is incorrect")
+            showAlert("اسم المستخدم أو كلمة المرور غير صحيحة");
         }
 
     } catch (error) {
@@ -30,16 +30,11 @@ form.addEventListener('submit', async function(e) {
     }
 });
 
-
 function showAlert(message) {
-    const alertMessage = document.getElementById('alert-message');
-    const customAlert = document.getElementById('custom-alert');
-
-    alertMessage.textContent = message;
-    customAlert.style.display = 'block';
-
-    const closeButton = document.getElementById('alert-close');
-    closeButton.onclick = function() {
-        customAlert.style.display = 'none';
-    };
+    Swal.fire({
+        icon: 'error',
+        title: 'خطأ',
+        text: message,
+        confirmButtonText: 'موافق'
+    });
 }

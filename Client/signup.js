@@ -13,13 +13,21 @@ form.addEventListener('submit', async function (e) {
 
     // Validation for password
     if (userData.password !== userData.confpassword) {
-        alert("Passwords do not match.");
+        await Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Passwords do not match.'
+        });
         return; // Stop form submission
     }
 
     const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)/; // Must contain letters and numbers
     if (!passwordPattern.test(userData.password)) {
-        alert("Password must contain both letters and numbers.");
+        await Swal.fire({
+            icon: 'error',
+            title: 'Invalid Password',
+            text: 'Password must contain both letters and numbers.'
+        });
         return; // Stop form submission
     }
 
@@ -34,13 +42,22 @@ form.addEventListener('submit', async function (e) {
 
         const data = await response.json();
         console.log('Success:', data);
-        alert("Registration successful!");
+        await Swal.fire({
+            icon: 'success',
+            title: 'Registration Successful!',
+            text: 'You have registered successfully.'
+        });
 
         // Clear fields only on success
         form.reset();
 
     } catch (error) {
         console.error('Error:', error);
+        await Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'An error occurred during registration.'
+        });
 
         // Optionally, clear the fields here as well
         document.getElementById('name').value = '';
