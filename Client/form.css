@@ -16,6 +16,7 @@ background-color: #ecf0f1;}
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     margin-top: 35px;
+    
 }
 
 /* Headers styling */
@@ -79,7 +80,8 @@ button:hover {
 
 /* Products container */
 #products {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
     flex-wrap: wrap;
     gap: 40px;
     justify-content: center;
