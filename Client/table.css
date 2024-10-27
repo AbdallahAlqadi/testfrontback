@@ -11,6 +11,7 @@ body {
     margin-top: 50px; /* مسافة من أعلى الصفحة */
     padding: 20px; /* مسافة داخلية */    color: black; /* لون النص */
     border-radius: 10px; /* زوايا دائرية */
+    font-family:'Times New Roman', Times, serif;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* ظل */
 }
 
