@@ -42,9 +42,8 @@ async function getData() {
                     <td>${prices}</td>
                     <td>${counts}</td>
                     <td>${totals}</td>
-                     <td>${totalSum}</td> <!-- عمود مجموع total لكل الطلبات -->
+                    <td>${totalSum}</td> <!-- عمود مجموع total لكل الطلبات -->
                     <td>${createdAt}</td>
-                   
                 </tr>
             `;
         }).join('');
@@ -56,4 +55,8 @@ async function getData() {
     }
 }
 
+// استدعاء getData أول مرة
 getData();
+
+// استدعاء getData كل 5 ثوانٍ (3000 مللي ثانية)
+setInterval(getData, 3000);
