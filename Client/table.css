@@ -1,98 +1,96 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* استخدام خط أكثر احترافية */
-    background-color: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ececec;
     margin: 0;
     padding: 20px;
+    color: #333;
 }
-
 
 .header {
-    text-align: center; /* محاذاة النص في المنتصف */
-    margin-top: 50px; /* مسافة من أعلى الصفحة */
-    padding: 20px; /* مسافة داخلية */    color: black; /* لون النص */
-    border-radius: 10px; /* زوايا دائرية */
-    font-family:'Times New Roman', Times, serif;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* ظل */
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    color: white;
+    border-radius: 15px;
+    font-family: 'Times New Roman', Times, serif;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #ff7e5f, #feb47b);
 }
-
-
 
 table {
     width: 100%;
-    border-collapse: collapse; /* دمج الحدود */
+    border-collapse: collapse;
     margin: 20px 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* ظل أكثر وضوحًا */
-    border-radius: 12px; /* زوايا دائرية */
-    overflow: hidden; /* يضمن رؤية الزوايا الدائرية */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #ffffff;
 }
 
 thead {
-    background-color: orangered; /* اللون الأساسي */
+    background-color: #ff7043;
     color: #ffffff;
-    text-transform: uppercase; /* تحويل النص إلى أحرف كبيرة */
-    letter-spacing: 1px; /* زيادة المسافة بين الأحرف */
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 th, td {
-    padding: 15px 20px; /* مساحة داخل الخلايا */
-    text-align: left; /* محاذاة النص إلى اليسار */
-    font-size: 1em; /* حجم خط موحد للخلايا */
+    padding: 15px 20px;
+    text-align: left;
+    font-size: 1em;
 }
 
 tr:nth-child(even) {
-    background-color: #f9f9f9; /* لون فاتح للصفوف الزوجية */
+    background-color: #f3f3f3;
 }
 
-tr:hover {
-    background-color: #e6f7ff; /* لون أزرق فاتح عند التمرير */
-    color: black;
-}
-
-tbody tr {
-    transition: background-color 0.4s; /* انتقال سلس عند التمرير */
+tbody tr:hover {
+    background-color: #ffebee; /* تمييز الصف عند التمرير */
 }
 
 th {
-    font-weight: 700; /* خط عريض للرؤوس */
-    font-size: 1.2em; /* حجم خط أكبر للرؤوس */
+    font-weight: 700;
+    font-size: 1.2em;
+    border-bottom: 2px solid #ff7043;
 }
 
 td {
-    border-bottom: 1px solid #dddddd; /* حد رمادي فاتح أسفل الخلايا */
+    border-bottom: 1px solid #ddd;
 }
 
 /* تصميم متجاوب */
 @media (max-width: 768px) {
     table {
-        display: block; /* جعل الجدول كتلة على الشاشات الصغيرة */
-        overflow-x: auto; /* إضافة تمرير على الشاشات الصغيرة */
-        white-space: nowrap; /* منع التفاف النص */
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
     }
 
     thead {
-        display: none; /* إخفاء الرؤوس على الشاشات الصغيرة */
+        display: none;
     }
 
     tr {
-        display: flex; /* عرض مرن للصفوف */
-        justify-content: space-between; /* توزيع الخلايا */
-        margin-bottom: 10px; /* مسافة بين الصفوف */
-        background-color: #ffffff; /* خلفية بيضاء لكل صف */
-        border-radius: 8px; /* زوايا دائرية للصفوف */
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* ظل بسيط للصفوف */
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        padding: 10px;
     }
 
     td {
-        flex: 1; /* مساحة متساوية لكل خلية */
-        text-align: right; /* محاذاة النص إلى اليمين */
-        border: none; /* بدون حدود */
-        padding: 10px; /* تباعد أقل */
+        flex: 1;
+        text-align: right;
+        border: none;
+        padding: 10px;
     }
 
     td::before {
-        content: attr(data-label); /* استخدام data-label للرؤوس */
-        float: left; /* محاذاة التسميات إلى اليسار */
-        font-weight: bold; /* خط عريض للتسميات */
-        color: #007bff; /* لون أساسي للتسميات */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        color: #ff7043;
     }
 }
