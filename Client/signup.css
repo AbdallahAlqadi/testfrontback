@@ -20,6 +20,27 @@ body {
 
 }
 
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container input {
+    flex: 1;
+    margin-right: 5px;
+    
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px; /* المسافة من الجانب الأيمن */
+    cursor: pointer;
+    color: #007bff; /* يمكنك تعديل اللون حسب التصميم */
+    margin-bottom: 22px;
+
+}
+
 
 .signup-container {
    

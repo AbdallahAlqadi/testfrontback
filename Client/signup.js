@@ -11,24 +11,25 @@ form.addEventListener('submit', async function (e) {
         confpassword: document.getElementById('confpassword').value
     };
 
-    // Validation for password
+    // التحقق من تطابق كلمة المرور
     if (userData.password !== userData.confpassword) {
         await Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: 'Passwords do not match.'
+            title: 'عفواً...',
+            text: 'كلمات المرور غير متطابقة.'
         });
-        return; // Stop form submission
+        return; // توقف عن إرسال النموذج
     }
 
-    const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)/; // Must contain letters and numbers
+    // التحقق من قوة كلمة المرور
+    const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/; // يجب أن تحتوي على 8 أحرف على الأقل، حرف واحد، رقم واحد ورمز واحد
     if (!passwordPattern.test(userData.password)) {
         await Swal.fire({
             icon: 'error',
-            title: 'Invalid Password',
-            text: 'Password must contain both letters and numbers.'
+            title: 'كلمة مرور غير صالحة',
+            text: 'يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل، تشمل حرف واحد ورقم واحد ورمز واحد.'
         });
-        return; // Stop form submission
+        return; // توقف عن إرسال النموذج
     }
 
     try {
@@ -38,31 +39,44 @@ form.addEventListener('submit', async function (e) {
             body: JSON.stringify(userData)
         });
 
-        if (!response.ok) throw new Error(`Error: ${response.status}`);
+        if (!response.ok) throw new Error(`خطأ: ${response.status}`);
 
         const data = await response.json();
-        console.log('Success:', data);
+        console.log('نجاح:', data);
         await Swal.fire({
             icon: 'success',
-            title: 'Registration Successful!',
-            text: 'You have registered successfully.'
+            title: 'تم التسجيل بنجاح!',
+            text: 'لقد تم تسجيلك بنجاح.'
         });
 
-        // Clear fields only on success
+        // مسح الحقول فقط عند النجاح
         form.reset();
 
     } catch (error) {
-        console.error('Error:', error);
+        console.error('خطأ:', error);
         await Swal.fire({
             icon: 'error',
-            title: 'Error',
-            text: 'An error occurred during registration.'
+            title: 'خطأ',
+            text: 'حدث خطأ أثناء التسجيل. تحقق من البيانات المدخلة.'
         });
 
-        // Optionally, clear the fields here as well
-        document.getElementById('name').value = '';
-        document.getElementById('email').value = '';
+        // يمكنك مسح الحقول هنا أيضاً إذا رغبت
         document.getElementById('password').value = '';
         document.getElementById('confpassword').value = '';
     }
+});
+
+// خاصية إظهار كلمة المرور
+document.getElementById('togglePassword1').addEventListener('click', function () {
+    const passwordField = document.getElementById('password');
+    const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordField.setAttribute('type', type);
+    this.textContent = type === 'password' ? '👁️' : '🚫'; // تغيير الرمز حسب حالة كلمة المرور
+});
+
+document.getElementById('togglePassword2').addEventListener('click', function () {
+    const confirmPasswordField = document.getElementById('confpassword');
+    const type = confirmPasswordField.getAttribute('type') === 'password' ? 'text' : 'password';
+    confirmPasswordField.setAttribute('type', type);
+    this.textContent = type === 'password' ? '👁️' : '🚫'; // تغيير الرمز حسب حالة كلمة المرور
 });

@@ -21,12 +21,18 @@
 
             <label for="email">البريد الإلكتروني</label>
             <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني" required>
-
             <label for="password">كلمة المرور</label>
-            <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
-
+            <div class="password-container">
+                <input type="password" id="password" placeholder="أدخل كلمة المرور" required autocomplete="new-password">
+                <span id="togglePassword1" class="toggle-password">👁️</span>
+            </div>
+            
             <label for="confirm-password">تأكيد كلمة المرور</label>
-            <input type="password" id="confpassword" placeholder="أدخل كلمة المرور مرة أخرى" required>
+            <div class="password-container">
+                <input type="password" id="confpassword" placeholder="أدخل كلمة المرور مرة أخرى" required autocomplete="new-password">
+                <span id="togglePassword2" class="toggle-password">👁️</span>
+            </div>
+            
 
             <button type="submit">تسجيل</button>
             <p style="margin-top: 5%;color:  orangered;">لديك حساب ؟  <a style="text-decoration: none;color: aliceblue; margin-left: 30%;" href="login.html">سجل الدخول</a></p>
