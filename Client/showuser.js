@@ -217,4 +217,5 @@ checkoutButton.addEventListener('click', async () => {
 });
 
 // Fetch product data on page load
+
 setInterval(getData, 3000);
