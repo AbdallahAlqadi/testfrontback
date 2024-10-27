@@ -1,103 +1,86 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* استخدام خط أكثر احترافية */
     background-color: #f4f4f4;
     margin: 0;
     padding: 20px;
-    color: #333;
-    line-height: 1.6;
 }
 
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: collapse; /* دمج الحدود */
     margin: 20px 0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* ظل أكثر وضوحًا */
+    border-radius: 12px; /* زوايا دائرية */
+    overflow: hidden; /* يضمن رؤية الزوايا الدائرية */
 }
 
 thead {
-    background-color: #007bff;
+    background-color: #007bff; /* اللون الأساسي */
     color: #ffffff;
+    text-transform: uppercase; /* تحويل النص إلى أحرف كبيرة */
+    letter-spacing: 1px; /* زيادة المسافة بين الأحرف */
 }
 
 th, td {
-    padding: 15px 20px;
-    text-align: left;
-    font-size: 0.95em;
+    padding: 15px 20px; /* مساحة داخل الخلايا */
+    text-align: left; /* محاذاة النص إلى اليسار */
+    font-size: 1em; /* حجم خط موحد للخلايا */
 }
 
 tr:nth-child(even) {
-    background-color: #f7f7f7;
+    background-color: #f9f9f9; /* لون فاتح للصفوف الزوجية */
 }
 
 tr:hover {
-    background-color: #e9ecef;
+    background-color: #e6f7ff; /* لون أزرق فاتح عند التمرير */
+    color: black;
 }
 
 tbody tr {
-    transition: background-color 0.3s ease;
+    transition: background-color 0.4s; /* انتقال سلس عند التمرير */
 }
 
 th {
-    font-weight: 600;
-    font-size: 1.2em;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-weight: 700; /* خط عريض للرؤوس */
+    font-size: 1.2em; /* حجم خط أكبر للرؤوس */
 }
 
 td {
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid #dddddd; /* حد رمادي فاتح أسفل الخلايا */
 }
 
-/* Add subtle transitions and animations */
-table, th, td {
-    transition: all 0.3s ease;
-}
-
-table:hover {
-    transform: scale(1.02);
-}
-
-th:hover {
-    color: #ffdd57; /* Subtle change for column headers */
-}
-
-/* Responsive Design */
+/* تصميم متجاوب */
 @media (max-width: 768px) {
     table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
+        display: block; /* جعل الجدول كتلة على الشاشات الصغيرة */
+        overflow-x: auto; /* إضافة تمرير على الشاشات الصغيرة */
+        white-space: nowrap; /* منع التفاف النص */
     }
 
     thead {
-        display: none;
+        display: none; /* إخفاء الرؤوس على الشاشات الصغيرة */
     }
 
     tr {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 10px;
-        border: 1px solid #e0e0e0;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        display: flex; /* عرض مرن للصفوف */
+        justify-content: space-between; /* توزيع الخلايا */
+        margin-bottom: 10px; /* مسافة بين الصفوف */
+        background-color: #ffffff; /* خلفية بيضاء لكل صف */
+        border-radius: 8px; /* زوايا دائرية للصفوف */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* ظل بسيط للصفوف */
     }
 
     td {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 15px;
-        border: none;
-        font-size: 1em;
+        flex: 1; /* مساحة متساوية لكل خلية */
+        text-align: right; /* محاذاة النص إلى اليمين */
+        border: none; /* بدون حدود */
+        padding: 10px; /* تباعد أقل */
     }
 
     td::before {
-        content: attr(data-label);
-        font-weight: 600;
-        color: #007bff;
-        padding-right: 10px;
-        text-align: left;
-        width: 40%;
+        content: attr(data-label); /* استخدام data-label للرؤوس */
+        float: left; /* محاذاة التسميات إلى اليسار */
+        font-weight: bold; /* خط عريض للتسميات */
+        color: #007bff; /* لون أساسي للتسميات */
     }
 }
