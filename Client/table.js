@@ -1,5 +1,4 @@
-var tbody = document.getElementById('tbody'); // استخدام tbody بدلاً من trow
-var count = 0; // استخدام count بدلاً من cont
+var tbody = document.getElementById('tbody');
 var orderCountMap = {}; // خريطة لتخزين الأوقات وعددها
 
 async function getData() {
@@ -12,44 +11,48 @@ async function getData() {
 
         // التحقق مما إذا كانت البيانات فارغة
         if (data.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="6">لا توجد طلبات متاحة</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="7">لا توجد طلبات متاحة</td></tr>`;
             return;
         }
 
-        // استخدام map لإنشاء الصفوف
-        const rows = data.map(order => {
-            // إذا كانت قيمة createdAt موجودة بالفعل في الخريطة، استخدم نفس العداد
-            if (orderCountMap[order.createdAt] !== undefined) {
-                return `
-                    <tr>
-                        <td>${orderCountMap[order.createdAt]}</td>
-                        <td>${order.name}</td>
-                        <td>${order.price}</td>
-                        <td>${order.count}</td>
-                        <td>${order.total}</td>
-                        <td>${order.createdAt}</td>
-                    </tr>
-                `;
-            } else {
-                // إذا لم تكن موجودة، قم بزيادتها وتخزينها في الخريطة
-                orderCountMap[order.createdAt] = count++;
-                return `
-                    <tr>
-                        <td>${orderCountMap[order.createdAt]}</td>
-                        <td>${order.name}</td>
-                        <td>${order.price}</td>
-                        <td>${order.count}</td>
-                        <td>${order.total}</td>
-                        <td>${order.createdAt}</td>
-                    </tr>
-                `;
+        // تجميع الطلبات حسب الوقت createdAt
+        const groupedOrders = data.reduce((acc, order) => {
+            if (!acc[order.createdAt]) {
+                acc[order.createdAt] = [];
             }
-        }).join(''); // دمج مصفوفة الصفوف في سلسلة واحدة
+            acc[order.createdAt].push(order);
+            return acc;
+        }, {});
+
+        // إنشاء الصفوف بناءً على التجميع
+        const rows = Object.keys(groupedOrders).map((createdAt, index) => {
+            const orders = groupedOrders[createdAt];
+            const names = orders.map(order => order.name).join(', ');
+            const prices = orders.map(order => order.price).join(', ');
+            const counts = orders.map(order => order.count).join(', ');
+            const totals = orders.map(order => order.total).join(', ');
+
+            // حساب مجموع total لكل الطلبات في نفس الصف
+            const totalSum = orders.reduce((sum, order) => sum + order.total, 0);
+
+            return `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${names}</td>
+                    <td>${prices}</td>
+                    <td>${counts}</td>
+                    <td>${totals}</td>
+                     <td>${totalSum}</td> <!-- عمود مجموع total لكل الطلبات -->
+                    <td>${createdAt}</td>
+                   
+                </tr>
+            `;
+        }).join('');
 
         tbody.innerHTML = rows; // تحديث الـ DOM
     } catch (error) {
         console.error('Error:', error);
-        tbody.innerHTML = `<tr><td colspan="6">فشل تحميل الطلبات</td></tr>`; // يجب تحديث العدد هنا أيضًا
+        tbody.innerHTML = `<tr><td colspan="7">فشل تحميل الطلبات</td></tr>`;
     }
 }
 

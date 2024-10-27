@@ -3,74 +3,101 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 20px;
+    color: #333;
+    line-height: 1.6;
 }
 
 table {
     width: 100%;
-    border-collapse: collapse; /* Merge borders */
+    border-collapse: collapse;
     margin: 20px 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px; /* Rounded corners */
-    overflow: hidden; /* Ensures border-radius is visible */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 thead {
-    background-color: #007bff; /* Primary color */
+    background-color: #007bff;
     color: #ffffff;
 }
 
 th, td {
-    padding: 12px 15px; /* Space inside cells */
-    text-align: left; /* Align text to the left */
+    padding: 15px 20px;
+    text-align: left;
+    font-size: 0.95em;
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2; /* Light gray for even rows */
+    background-color: #f7f7f7;
 }
 
 tr:hover {
-    background-color: #e0e0e0; /* Darker gray on hover */
+    background-color: #e9ecef;
 }
 
 tbody tr {
-    transition: background-color 0.3s; /* Smooth transition for hover */
+    transition: background-color 0.3s ease;
 }
 
 th {
-    font-weight: bold; /* Bold headers */
-    font-size: 1.1em; /* Slightly larger font for headers */
+    font-weight: 600;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 td {
-    border-bottom: 1px solid #dddddd; /* Light gray border below cells */
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Add subtle transitions and animations */
+table, th, td {
+    transition: all 0.3s ease;
+}
+
+table:hover {
+    transform: scale(1.02);
+}
+
+th:hover {
+    color: #ffdd57; /* Subtle change for column headers */
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     table {
-        display: block; /* Make table block on small screens */
-        overflow-x: auto; /* Add scroll on small screens */
-        white-space: nowrap; /* Prevent text from wrapping */
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
     }
 
     thead {
-        display: none; /* Hide headers on small screens */
+        display: none;
     }
 
     tr {
-        display: flex; /* Flex display for rows */
-        justify-content: space-between; /* Space out the cells */
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
     td {
-        flex: 1; /* Equal space for each cell */
-        text-align: right; /* Right-align text in cells */
-        border: none; /* No borders */
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 15px;
+        border: none;
+        font-size: 1em;
     }
 
     td::before {
-        content: attr(data-label); /* Use data-label for headers */
-        float: left; /* Align labels to the left */
-        font-weight: bold; /* Bold labels */
+        content: attr(data-label);
+        font-weight: 600;
+        color: #007bff;
+        padding-right: 10px;
+        text-align: left;
+        width: 40%;
     }
 }
