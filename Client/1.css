@@ -20,7 +20,7 @@ body {
     padding: 10px 20px; /* مسافة داخلية */
     border: none; /* إزالة الإطار */
     border-radius: 8px; /* زوايا ناعمة */
-    font-size: 30px; /* حجم النص */
+    font-size:35px; /* حجم النص */
     cursor: pointer; /* مؤشر الفأرة */
     transition: all 0.3s ease; /* تأثير الانتقال */
 }
