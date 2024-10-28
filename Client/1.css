@@ -1,0 +1,37 @@
+body {
+    background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.315), rgba(0, 0, 0, 0.383)), 
+        url('https://img.pikbest.com/wp/202346/hunger-rapidly-satisfy-your-with-3d-fast-food-background-03_9739275.jpg!w700wp');
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;  
+    margin: 0;
+    background-size: cover; /* تغطية المساحة بالكامل */
+    background-position: center; /* تمركز الصورة */
+
+}
+
+
+.btn-primary1,.btn-primary2 {
+    background-color: orangered; /* لون أزرق أساسي */
+    color: #fff; /* لون النص أبيض */
+    padding: 10px 20px; /* مسافة داخلية */
+    border: none; /* إزالة الإطار */
+    border-radius: 8px; /* زوايا ناعمة */
+    font-size: 30px; /* حجم النص */
+    cursor: pointer; /* مؤشر الفأرة */
+    transition: all 0.3s ease; /* تأثير الانتقال */
+}
+
+/* تأثير عند التمرير */
+.btn-primary1:hover ,.btn-primary2:hover {
+    background-color: #0056b3; /* تغيير لون الخلفية عند التمرير */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* إضافة ظل */
+    transform: scale(1.05); /* تكبير الزر قليلاً */
+}
+
+#all{
+    margin-left: -3%;
+}

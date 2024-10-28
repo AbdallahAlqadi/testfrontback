@@ -94,3 +94,24 @@ td {
         color: #ff7043;
     }
 }
+
+
+/* تحسين زر الصفحة الرئيسية */
+.btn-primary {
+    background-color: #007bff; /* لون أزرق أساسي */
+    color: #fff; /* لون النص أبيض */
+    padding: 10px 20px; /* مسافة داخلية */
+    border: none; /* إزالة الإطار */
+    border-radius: 8px; /* زوايا ناعمة */
+    font-size: 18px; /* حجم النص */
+    cursor: pointer; /* مؤشر الفأرة */
+    transition: all 0.3s ease; /* تأثير الانتقال */
+    margin-left: 44%;
+}
+
+/* تأثير عند التمرير */
+.btn-primary:hover {
+    background-color: #0056b3; /* تغيير لون الخلفية عند التمرير */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* إضافة ظل */
+    transform: scale(1.05); /* تكبير الزر قليلاً */
+}
