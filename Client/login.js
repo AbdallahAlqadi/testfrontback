@@ -46,7 +46,7 @@ if (Date.now() < blockUntil) {
                 if (attempts >= MAX_ATTEMPTS) {
                     blockUntil = Date.now() + BLOCK_DURATION; // تعيين وقت الحظر
                     localStorage.setItem('blockUntil', blockUntil);
-                    showAlert("لقد تجاوزت عدد المحاولات. تم حظرك لمدة 5 دقائق.");
+                    showAlert("لقد تجاوزت عدد المحاولات. تم حظرك لمدة 3 دقائق.");
                 } else {
                     showAlert("اسم المستخدم أو كلمة المرور غير صحيحة");
                 }
