@@ -138,6 +138,7 @@ button:hover {
     border-radius: 15px 15px 0 0;
     z-index: 1;
     position: relative;
+    
 }
 
 .card:hover .product-image {
