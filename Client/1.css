@@ -1,6 +1,5 @@
 body {
-    background-image: 
-    linear-gradient(rgba(0, 0, 0, 0.315), rgba(0, 0, 0, 0.383)), 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
         url('https://img.pikbest.com/wp/202346/hunger-rapidly-satisfy-your-with-3d-fast-food-background-03_9739275.jpg!w700wp');
     font-family: Arial, sans-serif;
     display: flex;
@@ -8,30 +7,44 @@ body {
     align-items: center;
     height: 100vh;  
     margin: 0;
-    background-size: cover; /* تغطية المساحة بالكامل */
-    background-position: center; /* تمركز الصورة */
-
+    background-size: cover; 
+    background-position: center; 
+    color: #fff;
+    text-align: center;
 }
 
-
-.btn-primary1,.btn-primary2 {
-    background-color: orangered; /* لون أزرق أساسي */
-    color: #fff; /* لون النص أبيض */
-    padding: 10px 20px; /* مسافة داخلية */
-    border: none; /* إزالة الإطار */
-    border-radius: 8px; /* زوايا ناعمة */
-    font-size:35px; /* حجم النص */
-    cursor: pointer; /* مؤشر الفأرة */
-    transition: all 0.3s ease; /* تأثير الانتقال */
+header {
+    position: absolute;
+    top: 10px;
+    font-size: 2em;
+    font-weight: bold;
+    color: #ff9900;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* تأثير عند التمرير */
-.btn-primary1:hover ,.btn-primary2:hover {
-    background-color: #0056b3; /* تغيير لون الخلفية عند التمرير */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* إضافة ظل */
-    transform: scale(1.05); /* تكبير الزر قليلاً */
+.btn-primary1, .btn-primary2 {
+    background-color: orangered; 
+    color: #fff; 
+    padding: 15px 25px; 
+    border: none; 
+    border-radius: 10px; 
+    font-size: 1.5em; 
+    cursor: pointer; 
+    transition: all 0.3s ease; 
 }
 
-#all{
-    margin-left: -3%;
+.btn-primary1:hover, .btn-primary2:hover {
+    background-color: #0056b3; 
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); 
+    transform: scale(1.1); 
 }
+
+#all {
+    margin-right: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 80%;
+    max-width: 800px;
+}
+
