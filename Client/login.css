@@ -45,8 +45,8 @@ input {
 }
 
 button {
-    margin-left: 3%;
-    width: 92%;
+    width: 30%;
+    margin-left: 200px;
     padding: 10px;
     background-color: orangered;
     color: #fff;
