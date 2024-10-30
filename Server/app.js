@@ -6,6 +6,7 @@ const connectDB = require('./config/db');
 const dataRoutes = require('./routes/dataRoutes');
 const signupRoutes = require('./routes/signupRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const superviserRoutes = require('./routes/superviserRoutes');
 
 
 dotenv.config();
@@ -17,6 +18,7 @@ app.use('/api',dataRoutes);
 
 app.use('/api',signupRoutes);
 app.use('/api',orderRoutes);
+app.use('/api',superviserRoutes);
 
 
 module.exports = app;
