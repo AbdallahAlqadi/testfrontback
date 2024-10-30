@@ -3,7 +3,7 @@ var form = document.getElementById('form');
 // عدد المحاولات المسموح بها قبل الحظر
 const MAX_ATTEMPTS = 3;
 // مدة الحظر بالمللي ثانية (5 دقائق)
-const BLOCK_DURATION = 3 * 60 * 1000; // 5 دقائق
+const BLOCK_DURATION = 3 * 60 * 1000; // 3 دقائق
 
 // استرجاع عدد المحاولات ووقت الحظر إذا كانت موجودة
 let attempts = localStorage.getItem('attempts') ? parseInt(localStorage.getItem('attempts')) : 0;
@@ -12,7 +12,7 @@ let blockUntil = localStorage.getItem('blockUntil') ? parseInt(localStorage.getI
 // التحقق مما إذا كان المستخدم محظورًا
 if (Date.now() < blockUntil) {
     // إذا كان المستخدم محظورًا، عرض رسالة
-    showAlert("لقد تم حظرك مؤقتًا. يرجى الانتظار 3 دقائق.");
+    showAlert("لقد تم حظرك مؤقتًا. يرجى الانتظار حتى انتهاء فترة الحظر.");
 } else {
     form.addEventListener('submit', async function(e) {
         e.preventDefault(); // منع إعادة تحميل الصفحة
@@ -46,14 +46,15 @@ if (Date.now() < blockUntil) {
                 if (attempts >= MAX_ATTEMPTS) {
                     blockUntil = Date.now() + BLOCK_DURATION; // تعيين وقت الحظر
                     localStorage.setItem('blockUntil', blockUntil);
-                    showAlert("لقد تجاوزت عدد المحاولات. تم حظرك لمدة 3 دقائق.");
+                    showAlert("لقد تجاوزت الحد المسموح به من المحاولات. تم حظرك لمدة 3 دقائق.");
                 } else {
-                    showAlert("اسم المستخدم أو كلمة المرور غير صحيحة");
+                    showAlert("اسم المستخدم أو كلمة المرور غير صحيحة. حاول مرة أخرى.");
                 }
             }
 
         } catch (error) {
             console.error('Error:', error);
+            showAlert("حدث خطأ أثناء محاولة الاتصال بالخادم. يرجى المحاولة لاحقًا.");
         }
     });
 }
@@ -63,6 +64,20 @@ function showAlert(message) {
         icon: 'error',
         title: 'خطأ',
         text: message,
-        confirmButtonText: 'موافق'
+        confirmButtonText: 'موافق',
+        customClass: {
+            confirmButton: 'custom-confirm-button' // إضافة فئة مخصصة للزر
+        }
     });
 }
+
+// CSS مخصص لتعديل حجم زر "موافق"
+const style = document.createElement('style');
+style.innerHTML = `
+.custom-confirm-button {
+    font-size: 16px; /* تغيير حجم الخط */
+    padding: 10px 20px; /* تغيير الحشوة */
+    min-width: 120px; /* تعيين عرض أدنى */
+}
+`;
+document.head.appendChild(style);
