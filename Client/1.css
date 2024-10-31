@@ -1,7 +1,7 @@
 body {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
         url('https://img.pikbest.com/wp/202346/hunger-rapidly-satisfy-your-with-3d-fast-food-background-03_9739275.jpg!w700wp');
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,40 +11,79 @@ body {
     background-position: center; 
     color: #fff;
     text-align: center;
+    animation: fadeIn 1s ease-in; /* Fade in effect */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 header {
     position: absolute;
     top: 10px;
-    font-size: 2em;
+    font-size: 3em; /* Increase font size */
     font-weight: bold;
     color: #ff9900;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); /* Increase shadow effect */
+    transition: transform 0.3s, color 0.3s; /* Add hover effect */
+    animation: slideIn 1s ease-in; /* Slide in effect */
+}
+
+header:hover {
+    transform: scale(1.1); /* Scale up on hover */
+    color: #ffcc00; /* Change color on hover */
 }
 
 .btn-primary1, .btn-primary2 {
     background-color: orangered; 
     color: #fff; 
-    padding: 15px 25px; 
+    padding: 15px 30px; 
     border: none; 
-    border-radius: 10px; 
-    font-size: 1.5em; 
+    border-radius: 25px; /* Increase button corner radius */
+    font-size: 1.6em; 
     cursor: pointer; 
     transition: all 0.3s ease; 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5); /* Add shadow effect */
 }
 
 .btn-primary1:hover, .btn-primary2:hover {
-    background-color: #0056b3; 
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); 
-    transform: scale(1.1); 
+    background-color: #ff4500; /* Change background color on hover */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5); 
+    transform: translateY(-3px); /* Lift effect on hover */
 }
 
 #all {
     margin-right: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Optimize column sizes */
     gap: 20px;
     width: 80%;
-    max-width: 800px;
+    max-width: 900px; /* Increase max width */
+    padding: 20px; /* Add padding */
+    background: rgba(0, 0, 0, 0.7); /* Transparent background for content box */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Shadow effect for the box */
+    animation: fadeIn 1s ease-in; /* Fade in effect */
 }
 
+/* Card content design */
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: left;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s ease-in; /* Slide in effect for cards */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
+}

@@ -481,3 +481,27 @@ body {
 
 #cart-count{
 color: orangered;}
+
+#x {
+    margin-left: -170px;
+    font-size: 3em; /* حجم الخط */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: sparkle 1s infinite alternate; /* إضافة animation */
+}
+
+/* تعريف الحركة */
+@keyframes sparkle {
+    0% {
+        opacity: 0.5; /* شفافية متوسطة */
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    50% {
+        opacity: 1; /* شفافية كاملة */
+        text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.5);
+    }
+    100% {
+        opacity: 0.5; /* العودة إلى شفافية متوسطة */
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+}
+
