@@ -205,3 +205,25 @@ checkoutButton.addEventListener('click', async () => {
 // Fetch product data on page load
 
 setInterval(getData, 3000);
+
+
+function confirmCall(phoneNumber) {
+    Swal.fire({
+        title: 'تأكيد الاتصال',
+        text: `هل تريد الاتصال بالرقم ${phoneNumber}؟`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'نعم، اتصال',
+        cancelButtonText: 'إلغاء',
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = `tel:${phoneNumber}`;
+        }
+    });
+}
