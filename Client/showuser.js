@@ -53,12 +53,18 @@ async function getData() {
 }
 
 // Show custom alert message using SweetAlert2
-function showAlert(message) {
+function showAlert(message, icon = 'info', title = 'تنبيه') {
     Swal.fire({
-        title: 'تنبيه',
+        title: title,
         text: message,
-        icon: 'info',
-        confirmButtonText: 'موافق'
+        icon: icon,
+        confirmButtonText: 'موافق',
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
     });
 }
 
@@ -86,7 +92,7 @@ function addToCart(event) {
         updateCart();
         document.getElementById(`count-${productName}`).textContent = '0';
     } else {
-        showAlert('يرجى تحديد كمية صحيحة.');
+        showAlert('يرجى تحديد كمية صحيحة.', 'warning');
     }
 }
 
@@ -108,7 +114,7 @@ function decreaseQuantity(event) {
         currentCount -= 1;
         countDisplay.textContent = currentCount;
     } else {
-        showAlert('لا يمكنك تقليل الكمية لأن الكمية الحالية هي صفر.');
+        showAlert('لا يمكنك تقليل الكمية لأن الكمية الحالية هي صفر.', 'warning');
     }
 }
 
@@ -147,9 +153,9 @@ clearCartButton.addEventListener('click', () => {
         cart = [];
         updateCart();
         cartItemsList.innerHTML = '<li>سلتك فارغة</li>';
-        showAlert('تم إفراغ السلة.');
+        showAlert('تم إفراغ السلة.', 'success');
     } else {
-        showAlert('سلتك فارغة بالفعل.');
+        showAlert('سلتك فارغة بالفعل.', 'info');
     }
 });
 
@@ -176,43 +182,23 @@ checkoutButton.addEventListener('click', async () => {
 
             if (!response.ok) {
                 const errorMessage = await response.text();
-                Swal.fire({
-                    title: 'خطأ',
-                    text: `فشل تقديم الطلب: ${errorMessage}`,
-                    icon: 'error',
-                    confirmButtonText: 'موافق'
-                });
+                showAlert(`فشل تقديم الطلب: ${errorMessage}`, 'error', 'خطأ');
                 return;
             }
 
             const responseData = await response.json();
             console.log('Response Data:', responseData);
 
-            Swal.fire({
-                title: 'نجاح',
-                text: 'تم تقديم الطلب بنجاح!',
-                icon: 'success',
-                confirmButtonText: 'موافق'
-            });
+            showAlert('تم تقديم الطلب بنجاح!', 'success', 'نجاح');
             cart = [];
             updateCart();
             cartModal.style.display = 'none';
         } catch (error) {
             console.error('Error during checkout:', error);
-            Swal.fire({
-                title: 'خطأ',
-                text: 'حدث خطأ أثناء تقديم الطلب. يرجى التحقق من اتصالك بالإنترنت.',
-                icon: 'error',
-                confirmButtonText: 'موافق'
-            });
+            showAlert('حدث خطأ أثناء تقديم الطلب. يرجى التحقق من اتصالك بالإنترنت.', 'error', 'خطأ');
         }
     } else {
-        Swal.fire({
-            title: 'تنبيه',
-            text: 'سلتك فارغة. يرجى إضافة عناصر قبل تقديم الطلب.',
-            icon: 'warning',
-            confirmButtonText: 'موافق'
-        });
+        showAlert('سلتك فارغة. يرجى إضافة عناصر قبل تقديم الطلب.', 'warning');
     }
 });
 
