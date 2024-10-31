@@ -127,6 +127,7 @@ body {
 }
 
 .navbar .nav-links a {
+    font-size: 18px; /* زيادة حجم الخط للروابط */
     color: white;
     text-decoration: none;
     padding: 10px 20px;
@@ -134,7 +135,6 @@ body {
     border-radius: 25px; /* تغيير تصميم الزر ليكون دائريًا */
     transition: background-color 0.3s, color 0.3s; /* حركة سلسة للون */
 }
-
 .navbar .nav-links a:hover {
     background-color: #f39c12; /* لون جديد عند التمرير */
     color: #2c3e50;
@@ -319,8 +319,6 @@ body {
     transform: scale(1.1);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-
-/* Cart Modal */
 .cart-modal {
     display: none;
     position: fixed;
@@ -330,18 +328,17 @@ body {
     width: 500px;
     max-height: 80%;
     background-color: rgba(255, 255, 255, 0.95);
-    border-radius: 15px; /* زيادة الزوايا الدائرية */
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* زيادة ظل الصندوق */
+    border-radius: 15px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
     z-index: 1000;
     padding: 20px;
     overflow-y: auto;
-    transition: all 0.4s ease-in-out; /* حركة سريعة وناعمة */
+    transition: all 0.4s ease-in-out;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #333;
 }
 
-/* زر إغلاق دائري في الأعلى */
 .cart-modal .close-button {
     position: absolute;
     top: 10px;
@@ -349,16 +346,15 @@ body {
     background-color: #ff5a5a;
     color: white;
     border: none;
-    width: 35px;
-    height: 35px;
+    width: 40px;  /* زيادة حجم الزر */
+    height: 40px; /* زيادة حجم الزر */
     border-radius: 50%;
     cursor: pointer;
     font-size: 20px;
-    font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     transition: background-color 0.3s, transform 0.2s;
 }
 
@@ -368,7 +364,7 @@ body {
 }
 
 .cart-modal h2 {
-    font-size: 26px;
+    font-size: 28px; /* زيادة حجم العنوان */
     margin-bottom: 15px;
     color: #2c3e50;
     font-family: 'Roboto', sans-serif;
@@ -377,7 +373,7 @@ body {
     padding: 15px;
     background: linear-gradient(145deg, #e1f5fe, #bbdefb);
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 #cart-items {
@@ -392,14 +388,14 @@ body {
     align-items: center;
     padding: 14px;
     border-bottom: 1px solid #ddd;
-    transition: background-color 0.2s, transform 0.2s; /* إضافة حركة */
+    transition: background-color 0.2s, transform 0.2s;
     font-size: 18px;
     color: #555;
 }
 
 #cart-items li:hover {
     background-color: rgba(238, 238, 238, 0.5);
-    transform: translateX(5px); /* حركة بسيطة لليمين */
+    transform: translateX(5px);
     font-weight: 500;
     color: #333;
 }
@@ -409,18 +405,18 @@ body {
     color: white;
     border: none;
     border-radius: 8px;
-    padding: 14px 20px;
-    font-size: 18px;
+    padding: 16px 22px; /* زيادة padding */
+    font-size: 20px; /* زيادة حجم النص */
     font-weight: bold;
     cursor: pointer;
     margin-top: 20px;
     width: 100%;
     transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
 }
 
 #checkout-button:hover, #clear-cart-button:hover, #close-cart:hover {
-    background-color: #0056b3;
+    background-color: #d84315; /* لون أكثر حيوية عند التمرير */
     transform: translateY(-3px);
 }
 
