@@ -36,24 +36,44 @@ label {
 }
 
 /* Input fields */
-input[type="text"], input[type="number"], input[type="file"] {
-    width: 100%;
+@keyframes focusGlow {
+    0% {
+        box-shadow: 0 0 0 rgba(74, 144, 226, 0.0);
+        border-color: #b0bec5;
+    }
+    100% {
+        box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+        border-color: #4a90e2;
+    }
+}
+
+input[type="text"], 
+input[type="number"], 
+input[type="file"] {
+    width: calc(100% - 36px);
     padding: 12px;
     margin-bottom: 12px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #fafafa;
-    transition: box-shadow 0.3s, border-color 0.3s;
-margin-left: -36px;}
-
-input[type="text"]:focus, input[type="number"]:focus, input[type="file"]:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+    margin-left: -36px;
+    border: 1px solid #b0bec5;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    color: #333;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+input[type="text"]:focus, 
+input[type="number"]:focus, 
+input[type="file"]:focus {
+    animation: focusGlow 0.3s ease forwards;
+    background-color: #ffffff;
+    outline: none;
+}
+
 
 /* Button styling */
 button {
-    background: linear-gradient(45deg, #e74c3c, #d35400);
+    background: #004d40;
     color: white;
     padding: 12px 25px;
     border: none;
@@ -167,7 +187,7 @@ button:hover {
 
 /* Add to Cart button */
 .card button {
-    background: orangered;
+    background: #004d40;
     color: white;
     padding: 12px 25px;
     border: none;
