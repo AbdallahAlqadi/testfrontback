@@ -1,6 +1,6 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #ececec;
+    background-color: #f7f9fc;
     margin: 0;
     padding: 20px;
     color: #333;
@@ -8,27 +8,31 @@ body {
 
 .header {
     text-align: center;
-    margin-top: 50px;
+    margin-top: -1%;
     padding: 20px;
-    color: white;
-    border-radius: 15px;
+    color: #fff;
     font-family: 'Times New Roman', Times, serif;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: #2c3e50;
+    width: 100%;
+    margin-bottom: 7%;
+    margin-left: -1.3%;
 }
 
 table {
-    width: 100%;
+    width: 100%; /* Set a smaller width */
+    max-width: 1200px; /* Limit maximum width for better readability */
+    margin: 20px auto; /* Center the table on the page */
     border-collapse: collapse;
-    margin: 20px 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     border-radius: 12px;
     overflow: hidden;
     background-color: #ffffff;
 }
 
+
 thead {
-    background-color: #ff7043;
+    background-color: #2c3e50;
     color: #ffffff;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -41,24 +45,24 @@ th, td {
 }
 
 tr:nth-child(even) {
-    background-color: #f3f3f3;
+    background-color: #f0f3f7;
 }
 
 tbody tr:hover {
-    background-color: #ffebee; /* تمييز الصف عند التمرير */
+    background-color: #e8eef5;
 }
 
 th {
     font-weight: 700;
     font-size: 1.2em;
-    border-bottom: 2px solid #ff7043;
+    border-bottom: 2px solid #8ca2af;
 }
 
 td {
     border-bottom: 1px solid #ddd;
 }
 
-/* تصميم متجاوب */
+/* Responsive Design */
 @media (max-width: 768px) {
     table {
         display: block;
@@ -76,7 +80,7 @@ td {
         margin-bottom: 10px;
         background-color: #ffffff;
         border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         padding: 10px;
     }
 
@@ -91,27 +95,26 @@ td {
         content: attr(data-label);
         float: left;
         font-weight: bold;
-        color: #ff7043;
+        color: #8ca2af;
     }
 }
 
-
-/* تحسين زر الصفحة الرئيسية */
+/* Button Styling */
 .btn-primary {
-    background-color: #007bff; /* لون أزرق أساسي */
-    color: #fff; /* لون النص أبيض */
-    padding: 10px 20px; /* مسافة داخلية */
-    border: none; /* إزالة الإطار */
-    border-radius: 8px; /* زوايا ناعمة */
-    font-size: 18px; /* حجم النص */
-    cursor: pointer; /* مؤشر الفأرة */
-    transition: all 0.3s ease; /* تأثير الانتقال */
+    background-color:#2c3e50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
     margin-left: 44%;
 }
 
-/* تأثير عند التمرير */
+/* Button Hover Effect */
 .btn-primary:hover {
-    background-color: #0056b3; /* تغيير لون الخلفية عند التمرير */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* إضافة ظل */
-    transform: scale(1.05); /* تكبير الزر قليلاً */
+    background-color: #2c3e50;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    transform: scale(1.05);
 }
