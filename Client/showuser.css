@@ -31,7 +31,8 @@ body {
     line-height: 1.2;                               /* تحسين المسافة بين الأسطر */
     opacity: 0.9;                                   /* تخفيف الشفافية لتأثير مرئي أكثر */
     cursor: pointer;                                /* تغيير المؤشر عند التمرير */
-    user-select: none;                              /* منع تحديد النص */
+    user-select: none;      
+max-width: 100%;                        /* منع تحديد النص */
 }
 
 .page-title:hover {
