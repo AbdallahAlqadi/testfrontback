@@ -30,7 +30,6 @@ table {
     background-color: #ffffff;
 }
 
-
 thead {
     background-color: #2c3e50;
     color: #ffffff;
@@ -101,7 +100,7 @@ td {
 
 /* Button Styling */
 .btn-primary {
-    background-color:#2c3e50;
+    background-color: #2c3e50;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -110,11 +109,30 @@ td {
     cursor: pointer;
     transition: all 0.3s ease;
     margin-left: 44%;
+    position: relative;
+    overflow: hidden;
 }
 
 /* Button Hover Effect */
 .btn-primary:hover {
-    background-color: #2c3e50;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
-    transform: scale(1.05);
+    animation: buttonHover 0.6s ease-in-out forwards;
+}
+
+/* Keyframes for Button Animation */
+@keyframes buttonHover {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        background-color: #2c3e50;
+    }
+    50% {
+        transform: scale(1.1);
+        background-color: #34495e; /* Slightly darker shade */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+        transform: scale(1);
+        background-color: #2c3e50;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
 }
