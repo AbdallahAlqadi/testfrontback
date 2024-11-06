@@ -9,32 +9,51 @@
     
     <style>
 
-        #userAction{
-            margin-right: 1412px;
-            margin-top: -10px;
-        }
-        #userAction:hover {
-            border-color: #4caf50;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-    
-        #userAction:focus {
-            border-color: #007bff;
-            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
-        }
-    
-        #userAction:focus + div {
-            transform: translateY(-50%) rotate(180deg);
-            color: #007bff;
-        }
-    
-        #userAction option {
-            transition: background-color 0.3s ease;
-        }
-    
-        #userAction option:hover {
-            background-color: #f1f1f1;
-        }
+/* Styling for user action dropdown */
+#userAction {
+    margin-right: auto;
+    margin-top: -10px;
+    width: 200px; /* تحديد عرض مناسب لتجنب التمرير الجانبي */
+    padding: 10px;
+    border: 2px solid #b0bec5;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    color: #34495e;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+#userAction:hover {
+    border-color: #4caf50;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+}
+
+#userAction:focus {
+    border-color: #007bff;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    outline: none; /* إزالة الخط الخارجي للتركيز */
+}
+
+#userAction:focus + div {
+    transform: translateY(-50%) rotate(180deg);
+    color: #007bff;
+}
+
+/* Dropdown options styling */
+#userAction option {
+    padding: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: #333;
+}
+
+/* Hover effect on options */
+#userAction option:hover {
+    background-color: #f1f1f1;
+    color: #4caf50; /* لون النص عند التمرير */
+}
+
     </style>
 </head>
 <body>
