@@ -88,13 +88,14 @@ body {
     width: 100%;
     position: fixed;
     z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* إضافة ظل لإبراز الشريط */
-    transition: background-color 0.3s; /* إضافة حركة عند تغيير اللون */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 /* تغيير لون الشريط عند التمرير */
 .navbar.scrolled {
-    background-color: #1a252f; /* لون أغمق عند التمرير */
+    background-color: #1a252f;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* تضخيم الظل عند التمرير */
 }
 
 .navbar .container {
@@ -103,41 +104,62 @@ body {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    height: 50px;
+    height: 60px; /* تعديل الطول لإضفاء مساحة أكبر */
     padding: 0 20px;
 }
 
 .navbar .logo {
-    font-size: 24px;
+    font-size: 26px; /* تكبير حجم الشعار */
     font-weight: bold;
     color: white;
     text-transform: uppercase;
     text-decoration: none;
-    transition: color 0.3s;
+    transition: color 0.3s, transform 0.3s;
 }
 
 .navbar .logo:hover {
-    color: #f39c12; /* لون جديد عند التمرير */
+    color: #f39c12;
+    transform: scale(1.1); /* تكبير الشعار قليلاً عند التمرير */
 }
 
 .navbar .nav-links {
     list-style: none;
     display: flex;
-    gap: 15px; /* مسافة بين الروابط */
+    gap: 20px; /* مسافة بين الروابط */
 }
 
 .navbar .nav-links a {
-    font-size: 18px; /* زيادة حجم الخط للروابط */
+    font-size: 18px;
     color: white;
     text-decoration: none;
     padding: 10px 20px;
     font-weight: 500;
-    border-radius: 25px; /* تغيير تصميم الزر ليكون دائريًا */
-    transition: background-color 0.3s, color 0.3s; /* حركة سلسة للون */
+    border-radius: 25px;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    position: relative;
 }
+
+/* تأثير حركة على الروابط */
+.navbar .nav-links a:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: #f39c12;
+    transition: width 0.3s;
+}
+
+.navbar .nav-links a:hover:after {
+    width: 100%; /* يظهر خط تحت الرابط عند التمرير */
+}
+
 .navbar .nav-links a:hover {
-    background-color: #f39c12; /* لون جديد عند التمرير */
+    background-color: #f39c12;
     color: #2c3e50;
+    transform: translateY(-2px); /* حركة طفيفة عند التمرير */
 }
 
 /* تصميم الجوال لشريط التنقل */
