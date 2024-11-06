@@ -29,6 +29,7 @@ async function getData() {
                         <button class="increase-btn" data-name="${info.nameproduct}">+</button>
                     </div>
                     <button class="add-item-btn" data-name="${info.nameproduct}" data-price="${info.price}" data-img="${info.img}">إضافة إلى السلة</button>
+                    <button class="show-ingredients-btn" data-name="${info.nameproduct}">عرض المكونات</button>
                 </div>
             `;
         });
@@ -45,6 +46,10 @@ async function getData() {
 
         document.querySelectorAll('.decrease-btn').forEach(btn => {
             btn.addEventListener('click', decreaseQuantity);
+        });
+
+        document.querySelectorAll('.show-ingredients-btn').forEach(btn => {
+            btn.addEventListener('click', showIngredients);
         });
     } catch (error) {
         console.error('Error:', error);
@@ -202,10 +207,52 @@ checkoutButton.addEventListener('click', async () => {
     }
 });
 
+// Show Ingredients Function
+function showIngredients(event) {
+    const productName = event.target.getAttribute('data-name');
+
+    // تخمين المكونات بناءً على اسم الأكلة
+    switch (productName) {
+        case 'برغر1':
+            ingredients = ['خبز برغر', 'لحم برغر', 'جبنة', 'خس', 'طماطم', 'بصل', 'مخلل'];
+            break;
+        case 'زنجر':
+            ingredients = ['خبز', 'قطع دجاج مقلية', 'جبنة', 'خس', 'طماطم', 'مايونيز', 'خيار مخلل'];
+            break;
+        case 'دجاج مشوي':
+            ingredients = ['دجاج مشوي', 'أرز', 'خضار مشوية', 'صلصة الليمون والثوم'];
+            break;
+        case 'شاورما':
+            ingredients = ['خبز شاورما', 'لحم شاورما (دجاج أو لحم)', 'بقدونس', 'طماطم', 'صلصة الثوم', 'مخلل'];
+            break;
+        case 'ستيك':
+            ingredients = ['ستيك لحم', 'بطاطس مهروسة', 'خضار سوتيه', 'صلصة الفلفل'];
+            break;
+        case 'سمك':
+            ingredients = ['سمك مشوي أو مقلي', 'أرز', 'ليمون', 'خضار مشوية أو سوتيه', 'صلصة الطرطار'];
+            break;
+        default:
+            ingredients = ['مكونات غير معروفة لهذه الأكلة'];
+    }
+    
+
+    // عرض المكونات في نافذة SweetAlert
+    Swal.fire({
+        title: `مكونات ${productName}`,
+        html: `<ul>${ingredients.map(item => `<li>${item}</li>`).join('')}</ul>`,
+        icon: 'info',
+        confirmButtonText: 'موافق',
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    });
+}
+
 // Fetch product data on page load
-
 getData();
-
 
 function confirmCall(phoneNumber) {
     Swal.fire({
