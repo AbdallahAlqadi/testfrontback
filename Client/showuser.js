@@ -56,6 +56,7 @@ async function getData() {
         listitem.innerHTML = `<p>فشل تحميل بيانات المنتج. يرجى المحاولة مرة أخرى لاحقًا.</p>`;
     }
 }
+getData();
 
 // Show custom alert message using SweetAlert2
 function showAlert(message, icon = 'info', title = 'تنبيه') {
@@ -79,26 +80,27 @@ function addToCart(event) {
     const productImage = event.target.getAttribute('data-img');
     const quantity = parseInt(document.getElementById(`count-${productName}`).textContent);
 
-    if (quantity > 0) {
-        const productPrice = parseFloat(event.target.getAttribute('data-price')).toFixed(2);
-        const existingProduct = cart.find(item => item.name === productName);
-
-        if (existingProduct) {
-            existingProduct.quantity += quantity;
-        } else {
-            cart.push({
-                name: productName,
-                price: productPrice,
-                quantity: quantity,
-                img: productImage
-            });
-        }
-
-        updateCart();
-        document.getElementById(`count-${productName}`).textContent = '0';
-    } else {
-        showAlert('يرجى تحديد كمية صحيحة.', 'warning');
+    if (quantity <= 0) {
+        showAlert('يرجى تحديد كمية أكبر من صفر قبل إضافة المنتج إلى السلة.', 'warning');
+        return; // Don't add the product to cart if quantity is 0 or invalid
     }
+
+    const productPrice = parseFloat(event.target.getAttribute('data-price')).toFixed(2);
+    const existingProduct = cart.find(item => item.name === productName);
+
+    if (existingProduct) {
+        existingProduct.quantity += quantity;
+    } else {
+        cart.push({
+            name: productName,
+            price: productPrice,
+            quantity: quantity,
+            img: productImage
+        });
+    }
+
+    updateCart();
+    document.getElementById(`count-${productName}`).textContent = '0'; // Reset quantity to 0 after adding to cart
 }
 
 // Increase product quantity
@@ -108,6 +110,10 @@ function increaseQuantity(event) {
     let currentCount = parseInt(countDisplay.textContent);
     currentCount += 1;
     countDisplay.textContent = currentCount;
+
+    // Update quantity in the cart
+    const product = cart.find(item => item.name === productName);
+    if (product) product.quantity = currentCount; // Update quantity in cart
 }
 
 // Decrease product quantity
@@ -118,6 +124,10 @@ function decreaseQuantity(event) {
     if (currentCount > 0) {
         currentCount -= 1;
         countDisplay.textContent = currentCount;
+
+        // Update quantity in the cart
+        const product = cart.find(item => item.name === productName);
+        if (product) product.quantity = currentCount; // Update quantity in cart
     } else {
         showAlert('لا يمكنك تقليل الكمية لأن الكمية الحالية هي صفر.', 'warning');
     }
@@ -165,39 +175,73 @@ clearCartButton.addEventListener('click', () => {
 });
 
 // Checkout button event
-checkoutButton.addEventListener('click', async () => {
+checkoutButton.addEventListener('click', () => {
+    showPaymentOptions(); // Show the payment options
+});
+
+// Show Payment Options (show only payment method, not sending it to backend)
+// Show Payment Options (show only payment method, not sending it to backend)
+function showPaymentOptions() {
+    Swal.fire({
+        title: 'اختر طريقة الدفع',
+        text: 'اختر ما إذا كنت تريد الدفع الآن باستخدام VISA أو الدفع المباشر عند الاستلام',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'دفع باستخدام VISA',
+        cancelButtonText: 'الدفع عند الاستلام'
+    }).then((result) => {
+        let paymentMethod = '';
+
+        if (result.isConfirmed) {
+            paymentMethod = 'VISA'; // تم اختيار الدفع باستخدام VISA
+            showAlert('تم اختيار الدفع باستخدام VISA', 'success', 'اختيار طريقة الدفع');
+        } else {
+            paymentMethod = 'Cash on delivery'; // تم اختيار الدفع عند الاستلام
+            showAlert('تم اختيار الدفع عند الاستلام', 'success', 'اختيار طريقة الدفع');
+        }
+
+        confirmOrder(); // تمرير طلب الدفع بدون نوع الدفع
+    });
+}
+
+async function confirmOrder() {
     if (cart.length > 0) {
         const orderData = cart.map(item => ({
             name: item.name,
-            price: parseFloat(item.price),
-            count: item.quantity,
-            total: (item.price * item.quantity).toFixed(2)
+            price: parseFloat(item.price), // تأكد من تحويل السعر إلى رقم عشري
+            count: item.quantity, // الكمية
+            total: (item.price * item.quantity).toFixed(2), // حساب الإجمالي لكل منتج
         }));
 
-        console.log('Order Data:', orderData);
-        
+        console.log('Order Data:', orderData); // سيتم طباعة بيانات الطلب في وحدة التحكم لتأكد من صحتها
+
         try {
+            // إرسال البيانات إلى الخادم بدون نوع الدفع
             const response = await fetch('http://127.0.0.1:4000/api/order', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(orderData)
+                body: JSON.stringify({
+                    order: orderData // إرسال فقط بيانات الطلب بدون نوع الدفع
+                }),
             });
 
+            // إذا كانت الاستجابة غير صحيحة
             if (!response.ok) {
                 const errorMessage = await response.text();
                 showAlert(`فشل تقديم الطلب: ${errorMessage}`, 'error', 'خطأ');
                 return;
             }
 
+            // إذا كانت الاستجابة ناجحة
             const responseData = await response.json();
             console.log('Response Data:', responseData);
 
             showAlert('تم تقديم الطلب بنجاح!', 'success', 'نجاح');
-            cart = [];
-            updateCart();
-            cartModal.style.display = 'none';
+            cart = []; // تفريغ السلة
+            updateCart(); // تحديث عرض السلة
+            cartModal.style.display = 'none'; // إغلاق نافذة السلة
         } catch (error) {
             console.error('Error during checkout:', error);
             showAlert('حدث خطأ أثناء تقديم الطلب. يرجى التحقق من اتصالك بالإنترنت.', 'error', 'خطأ');
@@ -205,13 +249,16 @@ checkoutButton.addEventListener('click', async () => {
     } else {
         showAlert('سلتك فارغة. يرجى إضافة عناصر قبل تقديم الطلب.', 'warning');
     }
-});
+}
 
-// Show Ingredients Function
+
+
+// Show ingredients for the selected product
 function showIngredients(event) {
     const productName = event.target.getAttribute('data-name');
+    let ingredients = [];
 
-    // تخمين المكونات بناءً على اسم الأكلة
+    // Define ingredients for each product (adjust as needed)
     switch (productName) {
         case 'برغر1':
             ingredients = ['خبز برغر', 'لحم برغر', 'جبنة', 'خس', 'طماطم', 'بصل', 'مخلل'];
@@ -220,44 +267,36 @@ function showIngredients(event) {
             ingredients = ['خبز', 'قطع دجاج مقلية', 'جبنة', 'خس', 'طماطم', 'مايونيز', 'خيار مخلل'];
             break;
         case 'دجاج مشوي':
-            ingredients = ['دجاج مشوي', 'أرز', 'خضار مشوية', 'صلصة الليمون والثوم'];
-            break;
-        case 'شاورما':
-            ingredients = ['خبز شاورما', 'لحم شاورما (دجاج أو لحم)', 'بقدونس', 'طماطم', 'صلصة الثوم', 'مخلل'];
+            ingredients = ['دجاج مشوي', 'رز', 'خضار مشوية', 'سلطة'];
             break;
         case 'ستيك':
-            ingredients = ['ستيك لحم', 'بطاطس مهروسة', 'خضار سوتيه', 'صلصة الفلفل'];
+            ingredients = ['لحم ستيك', 'بطاطس مقلية', 'خضار مشوية', 'صلصة'];
             break;
         case 'سمك':
-            ingredients = ['سمك مشوي أو مقلي', 'أرز', 'ليمون', 'خضار مشوية أو سوتيه', 'صلصة الطرطار'];
+            ingredients = ['سمك مشوي', 'أرز', 'خضار مشوية', 'صلصة ليمون'];
+            break;
+        case 'شاورما':
+            ingredients = ['خبز عربي', 'دجاج مشوي', 'طماطم', 'خس', 'صوص الثوم', 'مخلل'];
             break;
         default:
-            ingredients = ['مكونات غير معروفة لهذه الأكلة'];
+            ingredients = ['مكونات غير متوفرة'];
+            break;
     }
     
 
-    // عرض المكونات في نافذة SweetAlert
     Swal.fire({
-        title: `مكونات ${productName}`,
-        html: `<ul>${ingredients.map(item => `<li>${item}</li>`).join('')}</ul>`,
-        icon: 'info',
-        confirmButtonText: 'موافق',
-        showClass: {
-            popup: 'animate__animated animate__fadeInDown'
-        },
-        hideClass: {
-            popup: 'animate__animated animate__fadeOutUp'
-        }
+        title: 'المكونات',
+        text: ingredients.join(', '),
+        icon: 'info'
     });
 }
 
-// Fetch product data on page load
-getData();
+
 
 function confirmCall(phoneNumber) {
     Swal.fire({
         title: 'تأكيد الاتصال',
-        text: `هل تريد الاتصال بالرقم ${phoneNumber}؟`,
+        text: `هل تريد الاتصال بالرقم ${phoneNumber}؟`, // استخدام القوسين العكسيين ` (backticks) للجملة النصية
         icon: 'question',
         showCancelButton: true,
         confirmButtonText: 'نعم، اتصال',
@@ -270,7 +309,7 @@ function confirmCall(phoneNumber) {
         }
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = `tel:${phoneNumber}`;
+            window.location.href = `tel:${phoneNumber}`; // استخدام القوسين العكسيين لتنسيق الرابط
         }
     });
 }
