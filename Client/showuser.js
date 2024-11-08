@@ -230,6 +230,7 @@ async function confirmOrder() {
             // إذا كانت الاستجابة غير صحيحة
             if (!response.ok) {
                 const errorMessage = await response.text();
+                console.error('Server Response Error:', errorMessage); // طباعة الخطأ في وحدة التحكم
                 showAlert(`فشل تقديم الطلب: ${errorMessage}`, 'error', 'خطأ');
                 return;
             }
