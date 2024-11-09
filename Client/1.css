@@ -11,7 +11,7 @@ body {
     background-position: center; 
     color: #fff;
     text-align: center;
-    animation: fadeIn 1s ease-in; /* Fade in effect */
+    animation: fadeIn 1s ease-in; /* تأثير التلاشي */
 }
 
 @keyframes fadeIn {
@@ -26,18 +26,29 @@ body {
 
 header {
     position: absolute;
-    top: 10px;
-    font-size: 3em; /* Increase font size */
+    top: 50px; /* تعديل المسافة من الأعلى */
+    font-size: 3.5em; /* حجم الخط */
     font-weight: bold;
     color: #ff9900;
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); /* Increase shadow effect */
-    transition: transform 0.3s, color 0.3s; /* Add hover effect */
-    animation: slideIn 1s ease-in; /* Slide in effect */
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); /* تأثير الظل */
+    white-space: nowrap; /* منع النص من التوقف في سطر جديد */
+    overflow: hidden; /* إخفاء النص غير المعروض */
+    display: inline-block;
+    animation: typing 4s steps(30) 1s forwards, slideIn 1s ease-in; /* إضافة تأثير الكتابة */
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
 }
 
 header:hover {
-    transform: scale(1.1); /* Scale up on hover */
-    color: #ffcc00; /* Change color on hover */
+    transform: scale(1.1); /* تكبير عند التمرير */
+    color: #ffcc00; /* تغيير اللون عند التمرير */
 }
 
 .btn-primary1, .btn-primary2 {
@@ -45,34 +56,34 @@ header:hover {
     color: #fff; 
     padding: 15px 30px; 
     border: none; 
-    border-radius: 25px; /* Increase button corner radius */
+    border-radius: 25px; /* زيادة انحناء الزوايا */
     font-size: 1.6em; 
     cursor: pointer; 
     transition: all 0.3s ease; 
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5); /* Add shadow effect */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5); /* تأثير الظل */
 }
 
 .btn-primary1:hover, .btn-primary2:hover {
-    background-color: #ff4500; /* Change background color on hover */
+    background-color: #ff4500; /* تغيير لون الخلفية عند التمرير */
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5); 
-    transform: translateY(-3px); /* Lift effect on hover */
+    transform: translateY(-3px); /* تأثير رفع عند التمرير */
 }
 
 #all {
     margin-right: 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Optimize column sizes */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* تحسين حجم الأعمدة */
     gap: 20px;
     width: 80%;
-    max-width: 900px; /* Increase max width */
-    padding: 20px; /* Add padding */
-    background: rgba(0, 0, 0, 0.7); /* Transparent background for content box */
-    border-radius: 15px; /* Rounded corners */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Shadow effect for the box */
-    animation: fadeIn 1s ease-in; /* Fade in effect */
+    max-width: 900px; /* زيادة العرض الأقصى */
+    padding: 20px; /* إضافة حشو */
+    background: rgba(0, 0, 0, 0.7); /* خلفية شفافة لصندوق المحتوى */
+    border-radius: 15px; /* زوايا مستديرة */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* تأثير الظل للصندوق */
+    animation: fadeIn 1s ease-in; /* تأثير التلاشي */
 }
 
-/* Card content design */
+/* تصميم محتوى البطاقات */
 .card {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
@@ -80,10 +91,10 @@ header:hover {
     text-align: left;
     transition: transform 0.3s, box-shadow 0.3s;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    animation: slideIn 0.5s ease-in; /* Slide in effect for cards */
+    animation: slideIn 0.5s ease-in; /* تأثير الانزلاق للبطاقات */
 }
 
 .card:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
+    transform: translateY(-5px); /* تأثير رفع عند التمرير */
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
 }
