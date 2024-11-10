@@ -52,3 +52,18 @@ exports.getOrder = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+
+exports.deleteData = async (req, res) => {
+    try {
+      const deletedData = await Order.deleteMany({}); // استخدم deleteMany لحذف جميع الوثائق
+
+      if (deletedData.deletedCount === 0) {
+        return res.status(404).json({ message: 'No data found to delete' });
+      }
+
+      res.status(200).json({ message: 'All data deleted successfully', deletedData });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };

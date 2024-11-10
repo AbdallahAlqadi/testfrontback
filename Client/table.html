@@ -6,6 +6,8 @@
     <title>جدول الطلبات</title>
     
     <link rel="stylesheet" href="table.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
     <h1 class="header">سجل الطلبات</h1>
@@ -26,7 +28,12 @@
         </tbody>
         
     </table>
-    <button class="btn-primary" onclick="window.location.href='showuser.html'">الصفحة الرئيسية</button>
+    <div class="button-container">
+        <button class="btn-primary" onclick="window.location.href='showuser.html'">الصفحة الرئيسية</button>
+        <button class="btn-primary" onclick="deleteData()">حذف كل البيانات</button>
+    </div>
+ 
+
     <script src="table.js"></script>
 </body>
 </html>

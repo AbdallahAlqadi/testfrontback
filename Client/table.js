@@ -60,3 +60,49 @@ getData();
 
 // استدعاء getData كل 5 ثوانٍ (3000 مللي ثانية)
 setInterval(getData, 3000);
+
+
+
+const deleteData = async () => {
+    // عرض SweetAlert للتأكيد
+    const result = await Swal.fire({
+      title: 'هل أنت متأكد؟',
+      text: "هل تريد حذف جميع البيانات؟",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'نعم، احذف!',
+      cancelButtonText: 'لا، إلغاء',
+      reverseButtons: true,
+    });
+  
+    // إذا اختار المستخدم تأكيد الحذف
+    if (result.isConfirmed) {
+      try {
+        const response = await fetch('http://127.0.0.1:4000/api/order', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+  
+        if (!response.ok) {
+          const data = await response.json();
+          console.error(data.message);
+          Swal.fire('خطأ', data.message, 'error'); // عرض رسالة خطأ
+          return;
+        }
+  
+        const data = await response.json();
+        Swal.fire('تم الحذف', data.message, 'success'); // عرض رسالة نجاح
+        // يمكنك إضافة أي أكواد لتحديث الواجهة هنا
+  
+      } catch (error) {
+        console.error('Error deleting data:', error);
+        Swal.fire('خطأ', 'حدث خطأ أثناء الحذف', 'error'); // عرض رسالة خطأ في حالة حدوث استثناء
+      }
+    } else {
+      // في حالة إلغاء الحذف
+      Swal.fire('إلغاء', 'لم يتم حذف البيانات', 'info');
+    }
+  };
+  

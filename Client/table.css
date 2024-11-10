@@ -168,3 +168,33 @@ td {
     color: #16a085;
 }
 
+.button-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* تحديد عمودين متساويين */
+    gap: 20px; /* مسافة بين الأزرار */
+    max-width: 600px; /* تحديد أقصى عرض للحاوية */
+    margin: 0 auto; /* توسيط الحاوية */
+    padding: 20px; /* حشو حول الأزرار */
+}
+
+.btn-primary {
+    padding: 15px 30px;
+    color: white; /* اللون الأبيض للنص */
+    border: none;
+    border-radius: 8px; /* حواف دائرية */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* تأثير الانتقال عند التمرير */
+    width: 100%; /* جعل الأزرار تأخذ عرض الحاوية بالكامل */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* تغيير اللون عند التمرير */
+}
+
+/* تحسين للهواتف المحمولة */
+@media (max-width: 600px) {
+    .button-container {
+        grid-template-columns: 1fr; /* جعل الأزرار في عمود واحد على الشاشات الصغيرة */
+    }
+}
