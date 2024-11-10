@@ -213,7 +213,7 @@ function showIngredients(event) {
 
     // تخمين المكونات بناءً على اسم الأكلة
     switch (productName) {
-        case 'برغر1':
+        case 'برغر':
             ingredients = ['خبز برغر', 'لحم برغر', 'جبنة', 'خس', 'طماطم', 'بصل', 'مخلل'];
             break;
         case 'زنجر':
