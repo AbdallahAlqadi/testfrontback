@@ -75,26 +75,35 @@
         <h2 class="page-title">المنتجات المدخلة</h2>
         <ul id="products"></ul>
     </div>
-
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">تحديث المنتج</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button> -->
                 </div>
                 <div class="modal-body">
-                    <input id="updatename" style="margin-left: 2px;" type="text" placeholder="اسم المنتج" required>
-                    <input id="updateprice" style="margin-left: 2px;" type="number" step="0.01" placeholder="سعر المنتج" required>
-                    <input id="updateimg" style="margin-left: 2px;" type="file" placeholder="صورة المنتج" required>
+                    <div class="form-group">
+                        <label for="updatename">اسم المنتج</label>
+                        <input id="updatename" type="text" class="form-control" placeholder="اسم المنتج" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateprice">سعر المنتج</label>
+                        <input id="updateprice" type="number" class="form-control" step="0.01" placeholder="سعر المنتج" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="updateimg">صورة المنتج</label>
+                        <input id="updateimg" type="file" class="form-control" required>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">إغلاق</button>
                     <button type="button" id="change" class="btn btn-primary">حفظ التغييرات</button>
                 </div>
             </div>
         </div>
     </div>
+    
      <!-- قائمة الإجراءات للمستخدم -->
      <div class="mb-3" style="position: relative;">
         <select id="userAction" class="form-select" style="text-align: center; position: fixed; top: 20px; right: 5px; z-index: 1000; width: 160px;">

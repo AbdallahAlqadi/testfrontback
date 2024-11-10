@@ -216,3 +216,122 @@ button:hover {
     width: 90%;
 }
 }
+
+.modal-content {
+    border-radius: 12px; /* حواف دائرية أنعم */
+    padding: 25px;
+    background: linear-gradient(135deg, #f8f9fa, #e2e6ea); /* خلفية بتدرج لوني ناعم */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* إضافة تأثير الظل للـ modal */
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.3s ease-out; /* إضافة تأثير انبثاق */
+}
+
+.modal-header {
+    background: #004d40;
+    color: white; /* لون النص */
+    border-radius: 12px 12px 0 0; /* حواف دائرية في الأعلى */
+    padding: 12px 20px;
+    text-align: center; /* محاذاة النص في الوسط */
+    font-size: 1.25rem; /* زيادة حجم الخط */
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2); /* إضافة ظل خفيف للـ header */
+}
+
+.modal-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* توسيط المحتويات عموديًا */
+    align-items: center; /* توسيط المحتويات أفقيًا */
+    font-size: 1rem; /* تحسين حجم الخط */
+}
+
+.form-group {
+    width: 100%;
+    max-width: 450px; /* تحديد أقصى عرض */
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center; /* محاذاة المحتوى أفقيًا في الوسط */
+    align-items: center; /* محاذاة المحتوى عموديًا في الوسط */
+}
+
+.form-control {
+    border-radius: 12px; /* حواف دائرية متميزة */
+    padding: 12px;
+    border: 1px solid #ccc;
+    width: 100%; /* جعل الحقل يأخذ العرض بالكامل */
+    background-color: #f8f9fa; /* خلفية فاتحة للحقل */
+    font-size: 1rem;
+    transition: all 0.3s ease; /* تأثير انتقال ناعم */
+    display: block;
+    margin: 0 auto; /* التأكد من أن الـ input يتمركز */
+}
+
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.6); /* تأثير التركيز مع ظل أزرق */
+    outline: none;
+}
+
+.modal-footer {
+    border-top: 1px solid #ddd;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-primary {
+    background-color: #28a745; /* لون الزر */
+    border-color: #28a745;
+    border-radius: 8px; /* حواف الزر دائرية */
+    padding: 12px 24px;
+    font-size: 1rem;
+    transition: all 0.3s ease; /* تأثير ناعم عند المرور */
+}
+
+.btn-primary:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    transform: translateY(-2px); /* تحريك الزر للأعلى عند التمرير */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* إضافة ظل أثناء التمرير */
+}
+
+.btn-secondary {
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    background-color: #6c757d;
+    color: white;
+    transition: all 0.3s ease; /* تأثير ناعم عند المرور */
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+    .modal-dialog {
+        max-width: 95%; /* ملائمة الـ modal بشكل أفضل على الشاشات الصغيرة */
+    }
+
+    .form-group {
+        max-width: 90%;
+    }
+
+    .modal-header {
+        font-size: 1.1rem; /* تكبير حجم الخط في الـ header */
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
