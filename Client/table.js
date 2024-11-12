@@ -16,36 +16,34 @@ async function getData() {
 
         // تجميع الطلبات حسب الوقت createdAt
         const groupedOrders = data.reduce((acc, order) => {
+            // استخدام createdAt كمرجع لكل الطلبات
             if (!acc[order.createdAt]) {
-                acc[order.createdAt] = {};
-            }
-
-            // تجميع الطلبات حسب اسم المنتج في نفس الوقت
-            if (!acc[order.createdAt][order.name]) {
-                acc[order.createdAt][order.name] = {
-                    name: order.name,
-                    price: order.price,
-                    count: 0,
-                    total: 0,
+                acc[order.createdAt] = {
+                    createdAt: order.createdAt,
+                    items: []
                 };
             }
 
-            // زيادة العدد الكلي و المجموع الكلي لنفس المنتج
-            acc[order.createdAt][order.name].count += order.count;
-            acc[order.createdAt][order.name].total += order.total;
+            // إضافة المنتج إلى قائمة الأصناف في نفس الوقت
+            acc[order.createdAt].items.push({
+                name: order.name,
+                price: order.price,
+                count: order.count,
+                total: order.total
+            });
             return acc;
         }, {});
 
         // إنشاء الصفوف بناءً على التجميع
         const rows = Object.keys(groupedOrders).map((createdAt, index) => {
-            const orders = groupedOrders[createdAt];
-            const names = Object.values(orders).map(order => order.name).join(', ');
-            const prices = Object.values(orders).map(order => order.price).join(', ');
-            const counts = Object.values(orders).map(order => order.count).join(', ');
-            const totals = Object.values(orders).map(order => order.total).join(', ');
+            const orders = groupedOrders[createdAt].items;
+            const names = orders.map(order => order.name).join(', ');
+            const prices = orders.map(order => order.price).join(', ');
+            const counts = orders.map(order => order.count).join(', ');
+            const totals = orders.map(order => order.total).join(', ');
 
             // حساب مجموع total لكل الطلبات في نفس الصف
-            const totalSum = Object.values(orders).reduce((sum, order) => sum + order.total, 0);
+            const totalSum = orders.reduce((sum, order) => sum + order.total, 0);
 
             // تنسيق الوقت والتاريخ بدون تفاصيل إضافية
             const dateObj = new Date(createdAt);
