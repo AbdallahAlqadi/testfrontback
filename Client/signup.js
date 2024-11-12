@@ -43,10 +43,12 @@ form.addEventListener('submit', async function (e) {
 
         const data = await response.json();
         console.log('نجاح:', data);
+         window.location.href="login.html"
         await Swal.fire({
             icon: 'success',
             title: 'تم التسجيل بنجاح!',
             text: 'لقد تم تسجيلك بنجاح.'
+           
         });
 
         // مسح الحقول فقط عند النجاح
