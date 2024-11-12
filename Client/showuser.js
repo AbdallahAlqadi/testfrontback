@@ -73,6 +73,16 @@ function showAlert(message, icon = 'info', title = 'تنبيه') {
     });
 }
 
+// استرجاع اسم المستخدم من localStorage
+let username = localStorage.getItem('user');
+
+// الحصول على العنصر بواسطة الـ ID
+var x1 = document.getElementById('x1');
+
+// عرض اسم المستخدم داخل العنصر
+x1.innerHTML = username ? `مرحباً ${username}!` : 'مرحباً زائر';  // إذا كان هناك اسم مستخدم، يتم عرضه، وإلا يعرض "زائر"
+
+
 // Add to cart
 function addToCart(event) {
     const productName = event.target.getAttribute('data-name');

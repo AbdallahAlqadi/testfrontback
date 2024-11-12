@@ -32,6 +32,7 @@ if (Date.now() < blockUntil) {
                     // إعادة تعيين عدد المحاولات عند تسجيل الدخول بنجاح
                     localStorage.removeItem('attempts');
                     localStorage.removeItem('blockUntil');
+                    localStorage.setItem('user', users);
                     window.location.href = "showuser.html";     
                     break; // الخروج من الحلقة إذا تم العثور على المستخدم
                 }
