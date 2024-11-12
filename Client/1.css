@@ -1,3 +1,4 @@
+/* الخلفية */
 body {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
         url('https://img.pikbest.com/wp/202346/hunger-rapidly-satisfy-your-with-3d-fast-food-background-03_9739275.jpg!w700wp');
@@ -5,25 +6,28 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;  
+    height: 100vh;
     margin: 0;
-    background-size: cover; 
-    background-position: center; 
+    background-size: cover;
+    background-position: center;
     color: #fff;
     text-align: center;
     animation: fadeIn 1s ease-in; /* تأثير التلاشي */
 }
 
+/* تأثير التلاشي عند التحميل */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
+/* تأثير انزلاق */
 @keyframes slideIn {
     from { transform: translateY(-20px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
 }
 
+/* عنوان الصفحة */
 header {
     position: absolute;
     top: 50px; /* تعديل المسافة من الأعلى */
@@ -37,38 +41,39 @@ header {
     animation: typing 4s steps(30) 1s forwards, slideIn 1s ease-in; /* إضافة تأثير الكتابة */
 }
 
+/* تأثير الكتابة */
 @keyframes typing {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
+    from { width: 0; }
+    to { width: 85%; }
 }
 
+/* تأثير التكبير عند التمرير */
 header:hover {
-    transform: scale(1.1); /* تكبير عند التمرير */
+    transform: scale(1.1);
     color: #ffcc00; /* تغيير اللون عند التمرير */
 }
 
+/* تصميم الأزرار */
 .btn-primary1, .btn-primary2 {
-    background-color: orangered; 
-    color: #fff; 
-    padding: 15px 30px; 
-    border: none; 
+    background-color: orangered;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
     border-radius: 25px; /* زيادة انحناء الزوايا */
-    font-size: 1.6em; 
-    cursor: pointer; 
-    transition: all 0.3s ease; 
+    font-size: 1.6em;
+    cursor: pointer;
+    transition: all 0.3s ease;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5); /* تأثير الظل */
 }
 
+/* تأثير عند التمرير */
 .btn-primary1:hover, .btn-primary2:hover {
-    background-color: #ff4500; /* تغيير لون الخلفية عند التمرير */
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5); 
-    transform: translateY(-3px); /* تأثير رفع عند التمرير */
+    background-color: #ff4500;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
+    transform: translateY(-3px);
 }
 
+/* صندوق المحتوى */
 #all {
     margin-right: 20px;
     display: grid;
@@ -80,7 +85,7 @@ header:hover {
     background: rgba(0, 0, 0, 0.7); /* خلفية شفافة لصندوق المحتوى */
     border-radius: 15px; /* زوايا مستديرة */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* تأثير الظل للصندوق */
-    animation: fadeIn 1s ease-in; /* تأثير التلاشي */
+    animation: fadeIn 1s ease-in;
 }
 
 /* تصميم محتوى البطاقات */
@@ -94,7 +99,35 @@ header:hover {
     animation: slideIn 0.5s ease-in; /* تأثير الانزلاق للبطاقات */
 }
 
+/* تأثير عند التمرير على البطاقات */
 .card:hover {
     transform: translateY(-5px); /* تأثير رفع عند التمرير */
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* تصميم النص داخل البطاقة */
+.card h3 {
+    font-size: 1.5em;
+    color: #ff9900;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+}
+
+/* تصميم الأزرار داخل البطاقة */
+.card button {
+    background-color: #ff4500;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* تأثير عند التمرير على الأزرار داخل البطاقة */
+.card button:hover {
+    background-color: #ff6347;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
 }
