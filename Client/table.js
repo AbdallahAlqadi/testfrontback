@@ -29,35 +29,37 @@ async function getData() {
 
         // إنشاء الصفوف بناءً على التجميع
         const rows = Object.keys(groupedOrders).map((createdAt, index) => {
-            const orders = groupedOrders[createdAt].items;
-
-            const names = orders.map(order => order.name).join(', ');
-            const prices = orders.map(order => order.price).join(', ');
-            const counts = orders.map(order => order.count).join(', ');
-            const totals = orders.map(order => order.total).join(', ');
-
-            // حساب مجموع total لكل الطلبات في نفس الصف
-            const totalSum = orders.reduce((sum, order) => sum + order.total, 0);
-
-            // تنسيق الوقت والتاريخ بدون تفاصيل إضافية
-            const dateObj = new Date(createdAt);
-            const formattedDate = dateObj.toLocaleDateString(); 
-            const formattedTime = dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
-            return `
-                <tr>
-                    <td>${index + 1}</td>
-                    <td>${names}</td>
-                    <td>${prices}</td>
-                    <td>${counts}</td>
-                    <td>${totals}</td>
-                    <td>${totalSum}</td> 
-                    <td>${formattedDate} ${formattedTime}</td>
-                </tr>
-            `;
-        }).join('');
-
-        tbody.innerHTML = rows; // تحديث الـ DOM
+          const orders = groupedOrders[createdAt].items;
+      
+          // جمع كل البيانات للأصناف في نفس الأعمدة 
+          const names = orders.map(order => order.name).join(', ');
+          const prices = orders.map(order => order.price).join(', ');
+          const counts = orders.map(order => order.count).join(', ');
+          const totals = orders.map(order => order.total).join(', ');
+      
+          // حساب مجموع total لكل الطلبات في نفس الصف
+          const totalSum = orders.reduce((sum, order) => sum + order.total, 0);
+      
+          // تنسيق الوقت والتاريخ بدون تفاصيل إضافية
+          const dateObj = new Date(createdAt);
+          const formattedDate = dateObj.toLocaleDateString(); 
+          const formattedTime = dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      
+          return `
+              <tr>
+                  <td>${index + 1}</td>
+                  <td>${names}</td>
+                  <td>${prices}</td>
+                  <td>${counts}</td>
+                  <td>${totals}</td>
+                  <td>${totalSum}</td>
+                  <td>${formattedDate} ${formattedTime}</td>
+              </tr>
+          `;
+      }).join('');
+      
+      tbody.innerHTML = rows; // تحديث الـ DOM
+      
     } catch (error) {
         console.error('Error:', error);
         tbody.innerHTML = `<tr><td colspan="7">فشل تحميل الطلبات</td></tr>`;
