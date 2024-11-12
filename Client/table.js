@@ -16,7 +16,6 @@ async function getData() {
 
         // تجميع الطلبات حسب الوقت createdAt
         const groupedOrders = data.reduce((acc, order) => {
-            // استخدام createdAt كمرجع لكل الطلبات
             if (!acc[order.createdAt]) {
                 acc[order.createdAt] = {
                     createdAt: order.createdAt,
@@ -24,19 +23,14 @@ async function getData() {
                 };
             }
 
-            // إضافة المنتج إلى قائمة الأصناف في نفس الوقت
-            acc[order.createdAt].items.push({
-                name: order.name,
-                price: order.price,
-                count: order.count,
-                total: order.total
-            });
+            acc[order.createdAt].items.push(order);
             return acc;
         }, {});
 
         // إنشاء الصفوف بناءً على التجميع
         const rows = Object.keys(groupedOrders).map((createdAt, index) => {
             const orders = groupedOrders[createdAt].items;
+
             const names = orders.map(order => order.name).join(', ');
             const prices = orders.map(order => order.price).join(', ');
             const counts = orders.map(order => order.count).join(', ');
@@ -47,8 +41,8 @@ async function getData() {
 
             // تنسيق الوقت والتاريخ بدون تفاصيل إضافية
             const dateObj = new Date(createdAt);
-            const formattedDate = dateObj.toLocaleDateString(); // عرض التاريخ
-            const formattedTime = dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); // عرض الوقت بساعات ودقائق
+            const formattedDate = dateObj.toLocaleDateString(); 
+            const formattedTime = dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
             return `
                 <tr>
@@ -57,8 +51,8 @@ async function getData() {
                     <td>${prices}</td>
                     <td>${counts}</td>
                     <td>${totals}</td>
-                    <td>${totalSum}</td> <!-- عمود مجموع total لكل الطلبات -->
-                    <td>${formattedDate} ${formattedTime}</td> <!-- الوقت والتاريخ بتنسيق مبسط -->
+                    <td>${totalSum}</td> 
+                    <td>${formattedDate} ${formattedTime}</td>
                 </tr>
             `;
         }).join('');
@@ -73,8 +67,8 @@ async function getData() {
 // استدعاء getData أول مرة
 getData();
 
-// استدعاء getData كل 5 ثوانٍ (3000 مللي ثانية)
-setInterval(getData, 3000);
+// تحديث البيانات كل 5 ثوانٍ
+setInterval(getData, 5000);
 
 const deleteData = async () => {
     const result = await Swal.fire({
