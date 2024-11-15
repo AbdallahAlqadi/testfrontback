@@ -15,32 +15,56 @@ body {
 }
 
 .page-title {
-    font-size: 40px;                                /* تعديل حجم الخط */
-    color: #2c3e50;                                 /* لون أنيق ودافئ */
-    background: linear-gradient(135deg, #3498db, #2ecc71); /* تدرج ألوان باردة */
-    -webkit-background-clip: text;                  /* إضافة لون متدرج على النص */
-    -webkit-text-fill-color: transparent;           /* شفافية اللون النصي */
-    text-align: center;                             /* توسيط النص */
-    font-weight: 800;                               /* خط ثقيل ولكن ليس زائد */
-    text-transform: uppercase;                      /* تحويل النص إلى أحرف كبيرة */
-    letter-spacing: 2px;                            /* تباعد بسيط بين الأحرف */
-    border-bottom: 2px solid #2ecc71;               /* خط سفلي رقيق ولون مميز */
-    padding-bottom: 20px;                           /* مسافة أسفل العنوان */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);      /* ظل ناعم وأكبر */
-    font-family: 'Arial', sans-serif;               /* استخدام خط مناسب وراقي */
-    transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* تأثيرات انسيابية */
-    margin-top: 150px;
-    line-height: 1.3;                               /* تحسين المسافة بين الأسطر */
-    opacity: 1;                                     /* شفافية طبيعية */
-    cursor: pointer;                                /* تغيير المؤشر عند التمرير */
-    user-select: none;                              /* منع تحديد النص */
-    max-width: 100%;                                /* منع تحديد النص */
+    font-size: 36px; /* حجم الخط مناسب كعنوان */
+    color: #2c3e50; /* لون رئيسي أنيق */
+    background: linear-gradient(90deg, #f39c12, #e74c3c, #8e44ad); /* تدرج نابض بالحياة */
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    font-weight: bold;
+    text-transform: capitalize; /* أحرف أولى كبيرة */
+    letter-spacing: 1.5px; /* تباعد خفيف بين الحروف */
+    font-family: 'Roboto', sans-serif; /* خط عصري وبسيط */
+    margin-top: 100px;
+    padding: 15px 20px; /* مساحة إضافية حول النص */
+    position: relative; /* لتحريك العناصر الزخرفية */
+    border: 3px solid transparent; /* خط حواف */
+    border-image: linear-gradient(90deg, #f39c12, #e74c3c, #8e44ad) 1; /* حواف متدرجة */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* ظل لإبراز العنوان */
+    cursor: pointer;
+    transition: all 0.4s ease-in-out; /* تأثير انسيابي */
 }
 
+/* التأثير عند التمرير */
 .page-title:hover {
-    color: #2ecc71;                                 /* لون مميز عند التمرير */
-    transform: scale(1.05);                         /* تكبير النص بشكل بسيط */
-    text-shadow: 0 8px 25px rgba(46, 204, 113, 0.5); /* ظل ملون وكثيف عند التمرير */
+    transform: scale(1.1); /* تكبير طفيف */
+    box-shadow: 0 10px 30px rgba(243, 156, 18, 0.6); /* ظل أكبر */
+    text-shadow: 0 5px 15px rgba(231, 76, 60, 0.8); /* لمعان ملون */
+}
+
+/* زخرفة - خطوط أعلى وأسفل النص */
+.page-title::before,
+.page-title::after {
+    content: '';
+    position: absolute;
+    width: 75px; /* طول الزخرفة */
+    height: 4px; /* سماكة الخط */
+    background: linear-gradient(90deg, #e74c3c, #8e44ad);
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 4px; /* حواف مستديرة */
+}
+
+.page-title::after {
+    top: unset;
+    bottom: 0;
+}
+
+/* زخرفة أيقونة */
+.page-title::before {
+    height: 20px; /* حجم الأيقونة */
+    background: url('https://img.icons8.com/emoji/48/star-emoji.png') no-repeat center/contain; /* أيقونة مميزة */
 }
 
 
