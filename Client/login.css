@@ -99,3 +99,27 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+
+
+
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+    .login-container {
+        height: 45%;
+        width: 45%;
+    }
+
+    .login-container h1{
+margin-bottom: 15%;
+        font-size: larger;
+    }
+   
+button{
+    margin-left: 21%;
+    width: 60%;
+}
+
+}   
+
+
