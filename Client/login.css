@@ -101,6 +101,28 @@ a:hover {
 }
 
 
+@media screen and (min-width: 0px) and (max-width: 575px) {
+    .login-container {
+        height: 55%;
+        width: 60%;
+    }
+
+    .login-container h1{
+margin-bottom: 14%;
+        font-size: larger;
+    }
+   
+button{
+    margin-left: 21%;
+    width: 60%;
+    height: 35px;
+}
+
+.input-group input{
+    height: 9.5px;
+}
+
+}   
 
 
 
