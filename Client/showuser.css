@@ -12,37 +12,33 @@ body {
 }
 
 .page-title {
-    font-size: 42px;                                /* زيادة حجم الخط */
-    color: #1a252f;                                 /* لون أغمق للنص */
-    background: linear-gradient(45deg, #e66b19, #d35400); /* لون متدرج */
+    font-size: 40px;                                /* تعديل حجم الخط */
+    color: #2c3e50;                                 /* لون أنيق ودافئ */
+    background: linear-gradient(135deg, #3498db, #2ecc71); /* تدرج ألوان باردة */
     -webkit-background-clip: text;                  /* إضافة لون متدرج على النص */
     -webkit-text-fill-color: transparent;           /* شفافية اللون النصي */
     text-align: center;                             /* توسيط النص */
-    font-weight: 900;                               /* خط أسمك */
+    font-weight: 800;                               /* خط ثقيل ولكن ليس زائد */
     text-transform: uppercase;                      /* تحويل النص إلى أحرف كبيرة */
-    letter-spacing: 3px;                            /* زيادة التباعد بين الأحرف */
-    border-bottom: 4px solid #e66b19;               /* خط سفلي أكثر سماكة */
-    padding-bottom: 15px;                           /* مسافة أكبر أسفل العنوان */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);      /* ظل أقوى */
-    font-family: 'Arial Black', sans-serif;         /* خط قوي للنص */
-    transition: color 0.3s ease, transform 0.3s ease; /* تأثير انسيابي */
-    margin-top: 190px;
-    /* تعديلات جديدة */
-    line-height: 1.2;                               /* تحسين المسافة بين الأسطر */
-    opacity: 0.9;                                   /* تخفيف الشفافية لتأثير مرئي أكثر */
+    letter-spacing: 2px;                            /* تباعد بسيط بين الأحرف */
+    border-bottom: 2px solid #2ecc71;               /* خط سفلي رقيق ولون مميز */
+    padding-bottom: 20px;                           /* مسافة أسفل العنوان */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);      /* ظل ناعم وأكبر */
+    font-family: 'Arial', sans-serif;               /* استخدام خط مناسب وراقي */
+    transition: color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* تأثيرات انسيابية */
+    margin-top: 150px;
+    line-height: 1.3;                               /* تحسين المسافة بين الأسطر */
+    opacity: 1;                                     /* شفافية طبيعية */
     cursor: pointer;                                /* تغيير المؤشر عند التمرير */
-    user-select: none;      
-max-width: 100%;                        /* منع تحديد النص */
+    user-select: none;                              /* منع تحديد النص */
+    max-width: 100%;                                /* منع تحديد النص */
 }
 
 .page-title:hover {
-    color: #d35400;                                 /* لون مميز عند التمرير */
-    transform: scale(1.05);                         /* تكبير النص عند التمرير */
-    text-shadow: 0 5px 15px rgba(230, 107, 25, 0.7); /* إضافة ظل ملون عند التمرير */
+    color: #2ecc71;                                 /* لون مميز عند التمرير */
+    transform: scale(1.05);                         /* تكبير النص بشكل بسيط */
+    text-shadow: 0 8px 25px rgba(46, 204, 113, 0.5); /* ظل ملون وكثيف عند التمرير */
 }
-
-
-
 
 
 
@@ -193,7 +189,10 @@ max-width: 100%;                        /* منع تحديد النص */
     width: 600px;
     height: 600px; /* تعديل العرض ليكون مساويًا للارتفاع */
     border-radius: 50%; /* يجعل العنصر دائريًا */
-    animation: rotateImage 5s linear infinite;
+    animation: rotateImage 5s linear infinite, glowEffect 1.5s ease-in-out infinite alternate; /* إضافة تأثيرات متعددة */
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.8); /* إضافة ظل مستمر حول الصورة */
+    transform-origin: center; /* تحديد مركز الصورة كمرجع للدوران */
+    transition: transform 0.3s ease-in-out; /* إضافة تأثير عند التفاعل مع الصورة */
 }
 
 /* تعريف حركة الدوران */
@@ -204,6 +203,25 @@ max-width: 100%;                        /* منع تحديد النص */
     100% {
         transform: rotate(360deg);
     }
+}
+
+/* إضافة تأثير توهج حول الصورة */
+@keyframes glowEffect {
+    0% {
+        box-shadow: 0 0 20px rgba(255, 165, 0, 0.8);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(255, 165, 0, 1);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 165, 0, 0.8);
+    }
+}
+
+/* تأثير التكبير عند تمرير الماوس */
+#imgbody:hover {
+    transform: scale(1.1); /* تكبير الصورة عند التفاعل */
+    box-shadow: 0 0 40px rgba(255, 165, 0, 1); /* تكبير التأثير المتوهج عند التفاعل */
 }
 
 

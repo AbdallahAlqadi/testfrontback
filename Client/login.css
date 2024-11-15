@@ -16,21 +16,38 @@ body {
 @keyframes fadeIn {
     0% {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-20px) scale(0.9);
     }
     100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
-/* تعريف حركة الزر عند تمرير الماوس */
-@keyframes buttonHover {
+/* حركة الزر عند التحويم (Bounce) */
+@keyframes buttonBounce {
     0% {
         transform: scale(1);
     }
-    100% {
+    50% {
         transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* تعريف حركة الحقل عند التركيز */
+@keyframes inputFocus {
+    0% {
+        background-color: #fff;
+        border-color: #ccc;
+        transform: scale(1);
+    }
+    100% {
+        background-color: #f0f0f0;
+        border-color: orangered;
+        transform: scale(1.05);
     }
 }
 
@@ -47,6 +64,7 @@ body {
 h1 {
     text-align: center;
     color: #f8f6f6;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .input-group {
@@ -64,6 +82,13 @@ input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    transition: all 0.3s ease; /* إضافة انتقال سلس */
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* إضافة الحركة عند التركيز على الحقل */
+input:focus {
+    animation: inputFocus 0.3s ease forwards;
 }
 
 button {
@@ -78,12 +103,13 @@ button {
     margin-top: 3%;
     font-size: larger;
     transition: transform 0.3s ease; /* لتحسين السلاسة */
+    animation: fadeIn 1s ease-in-out;
 }
 
 /* حركة عند تمرير الماوس على الزر */
 button:hover {
     background-color: #0056b3;
-    animation: buttonHover 0.3s forwards; /* تطبيق الحركة */
+    animation: buttonBounce 0.5s ease;
 }
 
 p {
@@ -100,41 +126,30 @@ a:hover {
     text-decoration: underline;
 }
 
-
-
-
-
-
-
 @media screen and (min-width: 0px) and (max-width: 575px) {
     .login-container {
         height: 50%;
         width: 65%;
         padding-top: 7%;
         max-height: 50%;
-
     }
 
-    .login-container h1{
-margin-bottom: 14%;
+    .login-container h1 {
+        margin-bottom: 14%;
         font-size: larger;
     }
-   
-button{
-    margin-left: 21%;
-    width: 60%;
-    height: 35px;
-    margin-top: 5%;
 
+    button {
+        margin-left: 21%;
+        width: 60%;
+        height: 35px;
+        margin-top: 5%;
+    }
+
+    .input-group input {
+        height: 9.5px;
+    }
 }
-
-.input-group input{
-    height: 9.5px;
-}
-
-}   
-
-
 
 @media screen and (min-width: 576px) and (max-width: 767px) {
     .login-container {
@@ -143,23 +158,17 @@ button{
         max-height: 55%;
     }
 
-    .login-container h1{
-margin-bottom: 15%;
+    .login-container h1 {
+        margin-bottom: 15%;
         font-size: larger;
     }
-   
-button{
-    margin-left: 21%;
-    width: 60%;
-    margin-top: 5%;
 
+    button {
+        margin-left: 21%;
+        width: 60%;
+        margin-top: 5%;
+    }
 }
-
-}   
-
-
-
-
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
     .login-container {
@@ -168,20 +177,17 @@ button{
         max-height: 55%;
     }
 
-    .login-container h1{
-margin-bottom: 15%;
+    .login-container h1 {
+        margin-bottom: 15%;
         font-size: larger;
     }
-   
-button{
-    margin-left: 21%;
-    width: 60%;
-    margin-top: 5%;
 
+    button {
+        margin-left: 21%;
+        width: 60%;
+        margin-top: 5%;
+    }
 }
-
-}   
-
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
     .login-container {
@@ -190,20 +196,14 @@ button{
         max-height: 55%;
     }
 
-    .login-container h1{
-margin-bottom: 15%;
+    .login-container h1 {
+        margin-bottom: 15%;
         font-size: larger;
     }
-   
-button{
-    margin-left: 21%;
-    width: 60%;
-    margin-top: 5%;
+
+    button {
+        margin-left: 21%;
+        width: 60%;
+        margin-top: 5%;
+    }
 }
-
-}   
-
-
-
-
-
