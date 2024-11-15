@@ -77,7 +77,7 @@ button {
     color: white;
     padding: 12px 25px;
     border: none;
-    border-radius: 50px;
+    border-radius: 60px;
     font-size: 1.2rem;
     cursor: pointer;
     transition: background-color 0.4s ease, transform 0.3s ease;
@@ -161,10 +161,7 @@ button:hover {
     
 }
 
-.card:hover .product-image {
-    transform: scale(1.05);
-    filter: brightness(1.2);
-}
+
 
 /* Product name */
 .product-name {
