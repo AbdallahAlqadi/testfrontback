@@ -40,7 +40,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 8px 30px rgba(231, 232, 230, 0.9); 
     width: 35%;
-    height: 45%;
+    height: 44%;
     animation: fadeIn 1s ease-in-out; /* إضافة الحركة */
 }
 
@@ -99,6 +99,8 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+
 
 
 
@@ -205,22 +207,3 @@ button{
 
 
 
-@media screen and (min-width: 1200px) {
-    .login-container {
-        height: 60%;
-        width: 38%;
-        max-height: 55%;
-    }
-
-    .login-container h1{
-margin-bottom: 15%;
-        font-size: larger;
-    }
-   
-button{
-    margin-left: 21%;
-    width: 56%;
-    margin-top: 5%;
-}
-
-}
