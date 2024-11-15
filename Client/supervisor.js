@@ -22,7 +22,8 @@ form2.addEventListener('submit', async function(e) {
             if (user == data[i].name && password == data[i].password) {
                 isValidUser = true; // إذا تم العثور على المستخدم
                 window.location.href = "form.html";
-                
+                localStorage.setItem('user', user);
+
                 break; // الخروج من الحلقة إذا تم العثور على المستخدم
             }
         }
