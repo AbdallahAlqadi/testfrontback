@@ -13,7 +13,6 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
-
 .page-title {
     font-size: 36px; /* حجم الخط مناسب كعنوان */
     color: #2c3e50; /* لون رئيسي أنيق */
@@ -33,14 +32,14 @@ body {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* ظل لإبراز العنوان */
     cursor: pointer;
     transition: all 0.4s ease-in-out; /* تأثير انسيابي */
+    max-width: 100%; /* تحديد أقصى عرض للنص */
+    overflow: hidden; /* إخفاء أي جزء من النص أو الزخارف الذي يتجاوز العرض */
+    display: inline-block; /* لضبط عرض العنوان ضمن المحتوى */
+    text-overflow: ellipsis; /* إضافة "..." عند تجاوز النص */
 }
 
 /* التأثير عند التمرير */
-.page-title:hover {
-    transform: scale(1.1); /* تكبير طفيف */
-    box-shadow: 0 10px 30px rgba(243, 156, 18, 0.6); /* ظل أكبر */
-    text-shadow: 0 5px 15px rgba(231, 76, 60, 0.8); /* لمعان ملون */
-}
+
 
 /* زخرفة - خطوط أعلى وأسفل النص */
 .page-title::before,
@@ -54,6 +53,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     border-radius: 4px; /* حواف مستديرة */
+    transition: width 0.3s ease; /* تأثير تغيير العرض */
 }
 
 .page-title::after {
@@ -66,6 +66,9 @@ body {
     height: 20px; /* حجم الأيقونة */
     background: url('https://img.icons8.com/emoji/48/star-emoji.png') no-repeat center/contain; /* أيقونة مميزة */
 }
+
+
+
 
 
 
