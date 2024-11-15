@@ -24,7 +24,7 @@ async function getData() {
 
         data.forEach(order => {
             const orderTimestamp = new Date(order.createdAt).getTime();
-            if (orderTimestamp - lastTimestamp <= 20000) { // إذا كانت الفارق الزمني أقل من أو يساوي 20 ثانية
+            if (orderTimestamp - lastTimestamp <= 25000) { // إذا كانت الفارق الزمني أقل من أو يساوي 25 ثانية
                 currentGroup.push(order);
             } else {
                 groupedOrders.push(currentGroup);
