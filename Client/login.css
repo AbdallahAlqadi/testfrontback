@@ -107,7 +107,7 @@ a:hover {
 @media screen and (min-width: 0px) and (max-width: 575px) {
     .login-container {
         height: 50%;
-        width: 60%;
+        width: 65%;
         padding-top: 7%;
         max-height: 50%;
 
@@ -122,6 +122,8 @@ button{
     margin-left: 21%;
     width: 60%;
     height: 35px;
+    margin-top: 2%;
+
 }
 
 .input-group input{
@@ -147,8 +149,78 @@ margin-bottom: 15%;
 button{
     margin-left: 21%;
     width: 60%;
+    margin-top: 2%;
+
 }
 
 }   
 
 
+
+
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .login-container {
+        height: 52%;
+        width: 45%;
+        max-height: 55%;
+    }
+
+    .login-container h1{
+margin-bottom: 15%;
+        font-size: larger;
+    }
+   
+button{
+    margin-left: 21%;
+    width: 60%;
+    margin-top: 2%;
+
+}
+
+}   
+
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .login-container {
+        height: 59%;
+        width: 40%;
+        max-height: 55%;
+    }
+
+    .login-container h1{
+margin-bottom: 15%;
+        font-size: larger;
+    }
+   
+button{
+    margin-left: 21%;
+    width: 60%;
+    margin-top: 2%;
+}
+
+}   
+
+
+
+
+
+@media screen and (min-width: 1200px) {
+    .login-container {
+        height: 60%;
+        width: 38%;
+        max-height: 55%;
+    }
+
+    .login-container h1{
+margin-bottom: 15%;
+        font-size: larger;
+    }
+   
+button{
+    margin-left: 21%;
+    width: 56%;
+    margin-top: 2%;
+}
+
+}
