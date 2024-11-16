@@ -68,7 +68,7 @@
             <!-- إضافة select لاختيار الدخول أو الخروج -->
             
             
-            <button type="submit" style="margin-left: 222px;width: 140px;font-size: x-large;margin-top: 30px;padding-top: 5px;">إرسال</button>
+            <button id="buttonform" type="submit" style="margin-left: 222px;width: 140px;font-size: x-large;margin-top: 30px;padding-top: 5px;">إرسال</button>
         </form>
     </div>
     
@@ -98,9 +98,13 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <!-- زر إغلاق مع لون أحمر لتمييزه كزر لحذف أو إغلاق -->
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">إغلاق</button>
-                    <button type="button" id="change" class="btn btn-primary">حفظ التغييرات</button>
+                
+                    <!-- زر حفظ التغييرات مع لون أخضر لتمييزه كزر إيجابي للحفظ -->
+                    <button type="button" id="change" class="btn btn-success">حفظ التغييرات</button>
                 </div>
+                
             </div>
         </div>
     </div>

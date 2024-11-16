@@ -129,7 +129,7 @@ input:focus + i {
 }
 
 /* Button Styling */
-button {
+#buttonform {
     width: 100%;
     padding: 15px;
     background: linear-gradient(to right, #6a11cb, #2575fc);
@@ -145,14 +145,14 @@ button {
 }
 
 
-button:hover {
+#buttonform:hover {
     background: linear-gradient(to right, #2575fc, #6a11cb);
     transform: scale(1.05);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Submit Button Extra Animation */
-button:active {
+#buttonform:active {
     transform: scale(0.98);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
@@ -167,7 +167,7 @@ button:active {
         font-size: 2rem;
     }
 
-    button {
+    #buttonform {
         font-size: 1rem;
     }
 }
@@ -279,6 +279,7 @@ button:active {
     transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
     z-index: 1;
     position: relative;
+    max-width: 150px;
 }
 
 .card button:hover {
